@@ -14,14 +14,16 @@ Includes 7 new survivors:
   - The G.S.M. Unit (Multi-Function Drone)
   - The Engi's Walking Turret
   - The TS-280 Prototype Drone
-Adds in 
-  
+<br>
+Adds in new Skill variations for alternate playstyles.
+<br>Balancing for new survivors for a unique and challenging experience
 
-### Skills Added
-#### Lemurian Skills:
-##### Primary Variants:
+
+## Skills Added
+### Lemurian Skills:
+#### Primary Variants:
 - ELDER_FIREBALL
-##### Secondary Variants:
+#### Secondary Variants:
 - ELDER_FLAMEBREATH
 - Soldier Bash
   - Taken from the Unused Paladin character
@@ -31,21 +33,22 @@ Adds in
   - I may remove it from the Lemurian since it fits better with the Clay Templar.
     - Then again, it's a helluva lot of fun since the Lemurian is just a helmet away from being a football player
     
+<br>
  
- 
-#### Imp Skills:
-##### Utility Variants:
+### Imp Skills:
+#### Utility Variants:
 - LAST_RESORT
 
- 
-#### Clay Templar Skills:
-##### Primary Variants:
+<br>
+
+### Clay Templar Skills:
+#### Primary Variants:
 - Tar-Jar Toss
   - Taken from the Dunestrider Boss, it fires jars filled with tar at foes.
   - Fires 5 - 11 jars depending on how long you hold the button for
   - Auto-travels to where the cursor is at the time of firing
     - This means that it can go clear across the map if aimed properly
-##### Secondary Variants:
+#### Secondary Variants:
 - Soldier Bash
   - Taken from the Unused Paladin character
   - Charge a short distance, then stun & knockback anything you hit
@@ -57,39 +60,45 @@ Adds in
   - Also has the added bonus of homing in on nearby creatures
   - Can't do jack against airborne targets
 
- 
-#### Alloy Vulture Skills:
-##### Primary Variants:
+<br>
+
+### Alloy Vulture Skills:
+#### Primary Variants:
 - ROBOBALL_BOSS_BALLS
 
- 
-#### Drone Skills
-##### Primary Variants:
+<br>
+
+### Drone Skills
+#### Primary Variants:
 - STOCK_GUN
 - STRIKE_GUN
 - MISSILE_LAUNCHER
 
- 
-#### WALKER TURRET
-##### Primary Variants:
+<br>
+
+### Walker-Turret Skills
+#### Primary Variants:
 - GAUSS_CANNON
 - MINIROBOBALL_BEAM
  
- 
+<br>
 ## Plans
 - [x] Add Skill Variants
 - [x] Fix Multiplayer Functionality
+- [ ] Change Walker Turret's Name to match it's actual name
 - [ ] Add new icons for all new skills
 - [ ] Find someone who knows how to draw
 - [ ] Remove Mega Drone(?)
 - [ ] Add Skin functionality
 - [ ] Balance skills to better fit the survivors
+- [ ] Add in Display Prefabs for each new survivor
 
-
+<br>
 ## Special Thanks
 Herb - For their Skill Utility Boiler-Plate Code
 The Risk of Rain 2 Modding Discord - For being a huge help and helping me debug this hot mess
-
+<br>
+ 
 ## Dependencies
 - BepinEX
 - R2API
