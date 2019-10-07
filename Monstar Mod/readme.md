@@ -1,4 +1,4 @@
-#Monstar Mod(e) by SadBoxMan#
+#Monstar Mod(e) by SadBoxMan
 
 ##Overview
 This is a mod for Risk of Rain 2 that adds in a select few monsters and robots and gives each new skills for a new and challenging experience.
