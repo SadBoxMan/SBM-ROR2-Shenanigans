@@ -18,7 +18,7 @@ Includes 7 new survivors:
   - The TS-280 Prototype Drone
 <br>
 Adds in new Skill variations for alternate playstyles.
-<br>Balancing for new survivors for a unique and challenging experience
+<br>Balancing for new survivor skills
 
 
 ## Skills Added
