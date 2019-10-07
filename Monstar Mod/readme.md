@@ -1,7 +1,7 @@
 Monstar Mod(e) by SadBoxMan
 
-*Overview
-***
+**Overview
+*
 
 *Features
 ***
