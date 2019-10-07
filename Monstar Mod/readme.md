@@ -5,6 +5,8 @@ This is a mod for Risk of Rain 2 that adds in a select few monsters and robots a
 
 > *For people who have some experience with Risk of Rain 2 and want something fun and challenging in between updates.*
 
+<br>
+
 ## Features
 Includes 7 new survivors:
   - The Lemurian
@@ -82,6 +84,7 @@ Adds in new Skill variations for alternate playstyles.
 - MINIROBOBALL_BEAM
  
 <br>
+
 ## Plans
 - [x] Add Skill Variants
 - [x] Fix Multiplayer Functionality
@@ -94,9 +97,11 @@ Adds in new Skill variations for alternate playstyles.
 - [ ] Add in Display Prefabs for each new survivor
 
 <br>
+
 ## Special Thanks
 Herb - For their Skill Utility Boiler-Plate Code
 The Risk of Rain 2 Modding Discord - For being a huge help and helping me debug this hot mess
+
 <br>
  
 ## Dependencies
