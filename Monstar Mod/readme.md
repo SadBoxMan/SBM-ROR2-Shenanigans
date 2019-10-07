@@ -14,6 +14,7 @@ Includes 7 new survivors:
   - The G.S.M. Unit (Multi-Function Drone)
   - The Engi's Walking Turret
   - The TS-280 Prototype Drone
+Adds in 
   
 
 ### Skills Added
@@ -22,7 +23,14 @@ Includes 7 new survivors:
 - ELDER_FIREBALL
 ##### Secondary Variants:
 - ELDER_FLAMEBREATH
-- SHOULDER_BASH
+- Soldier Bash
+  - Taken from the Unused Paladin character
+  - Charge a short distance, then stun & knockback anything you hit
+  - Also a decent way to move just a little faster
+    - Can be used while sprinting!
+  - I may remove it from the Lemurian since it fits better with the Clay Templar.
+    - Then again, it's a helluva lot of fun since the Lemurian is just a helmet away from being a football player
+    
  
  
 #### Imp Skills:
@@ -32,10 +40,22 @@ Includes 7 new survivors:
  
 #### Clay Templar Skills:
 ##### Primary Variants:
-- CLAYBOSS_TAR_JAR_TOSS
+- Tar-Jar Toss
+  - Taken from the Dunestrider Boss, it fires jars filled with tar at foes.
+  - Fires 5 - 11 jars depending on how long you hold the button for
+  - Auto-travels to where the cursor is at the time of firing
+    - This means that it can go clear across the map if aimed properly
 ##### Secondary Variants:
-- SHOULDER_BASH
-- CLAYBOSS_TAR_BOWLING_BALLS
+- Soldier Bash
+  - Taken from the Unused Paladin character
+  - Charge a short distance, then stun & knockback anything you hit
+  - Also a decent way to move just a little faster
+    - Can be used while sprinting!
+- Tar Bowl
+  - Also taken from the Dunestrider boss
+  - Fires ~3-4 giant balls of tar that follow the terrain
+  - Also has the added bonus of homing in on nearby creatures
+  - Can't do jack against airborne targets
 
  
 #### Alloy Vulture Skills:
