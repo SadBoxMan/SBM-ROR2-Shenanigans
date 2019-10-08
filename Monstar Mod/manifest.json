@@ -1,0 +1,10 @@
+{
+  "name": "Monstar Mod",
+  "version_number": "1.0",
+  "website_url": "",
+  "description": "Survivor Additions, Icon Edits, and more",
+  "dependencies": [
+      "bbepis-BepInExPack-2.0.0",
+	  "tristanmcpherson-R2API-2.1.16"
+  ]
+}
