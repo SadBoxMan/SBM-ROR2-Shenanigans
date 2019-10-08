@@ -15,7 +15,7 @@ Includes 7 new survivors:
   - The Alloy Vulture
   - The G.S.M. Unit (Multi-Function Drone)
   - The Engi's Walking Turret
-  - The TS-280 Prototype Drone
+  - ~~The TS-280 Prototype Drone~~
 <br>
 Adds in new Skill variations for alternate playstyles.
 <br>Balancing for new survivor skills
@@ -40,6 +40,7 @@ Adds in new Skill variations for alternate playstyles.
 ### Imp Skills:
 #### Utility Variants:
 - LAST_RESORT
+- BANDIT_CLOAK
 
 <br>
 
@@ -81,21 +82,31 @@ Adds in new Skill variations for alternate playstyles.
 ### Walker-Turret Skills
 #### Primary Variants:
 - GAUSS_CANNON
-- MINIROBOBALL_BEAM
+- TURRET_GATLING_GUN
  
 <br>
 
 ## Plans
 - [x] Add Skill Variants
-- [x] Fix Multiplayer Functionality
+- [x] Fix general Multiplayer Compatibility
+- [ ] Fix other Multiplayer Bugs
 - [ ] Change Walker Turret's Name to match it's actual name
 - [ ] Add new icons for all new skills
 - [ ] Find someone who knows how to draw
-- [ ] Remove Mega Drone(?)
+- [x] Remove Mega Drone(?)
 - [ ] Add Skin functionality
 - [ ] Balance skills to better fit the survivors
 - [ ] Add in Display Prefabs for each new survivor
 
+<br>
+
+## Known Bugs
+- Various Multiplayer Bugs
+  - Vulture's "Wrath of the Alloys" only has knockback for the Host
+  - Walker Turret only works for the Host
+  - Icons do not show up in-game for other players
+  - Drone's "Missile Barrage" has a mild graphical glitch
+  
 <br>
 
 ## Special Thanks
