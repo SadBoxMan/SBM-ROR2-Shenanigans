@@ -45,8 +45,16 @@ Adds in new Skill variations for alternate playstyles.
  
 ### Imp Skills:
 #### Utility Variants:
-- LAST_RESORT
-- BANDIT_CLOAK
+- Last Surprise
+  - Turn invisible for about 5ish seconds. Stuns enemies on activation and on attacking out of it
+  - Taken from the Bandit
+  - Lowered the cooldown so that the Imp has more of an edge in battle
+- Providence's Escape (Rapture?)
+  - Teleports the player to a fixed location on the map, usually very high in the sky
+  - Taken from the Imp Boss 
+  - It is actually broken, but at the same time it adds a bit of strategy to the Imp's Playstyle
+    - Teleport to a safe, fixed location at the expense of possible fall damage due to the height of the location.
+
 
 <br>
 
