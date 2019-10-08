@@ -8,7 +8,7 @@ This is a mod for Risk of Rain 2 that adds in a select few monsters and robots a
 <br>
 
 ## Features
-Includes 7 new survivors:
+Includes ~~7~~ 6 new survivors:
   - The Lemurian
   - The Imp
   - The Clay Templar
@@ -25,19 +25,16 @@ Adds in new Skill variations for alternate playstyles.
 ### Lemurian Skills:
 #### Primary Variants:
 - Elder's Authority
-  - a.k.a Elder Lumerian Fireball
   - Fire 5 fireballs instead of 1
   - Taken directly from the Elder Lumerian
 #### Secondary Variants:
 - Elder's Whisper
-  - a.k.a. Elder Lumerian Fire-Breath
-  - Breathe fire and burn enemies
+  - Breathe fire and inflict burn on enemies
   - Also taken from the EL
   - Was originally a Primary SKill variant, but this led to situations where the Lemurian can't hit anything
     - *cough cough Vagrant*
 - Soldier Tackle (name WIP)
   - Taken from the Unused Paladin character
-    - Known as [paladinbodyleap] internally
   - Charge a short distance, then stun & knockback anything you hit
   - Also a decent way to move just a little faster
     - Can be used while sprinting!
@@ -48,12 +45,12 @@ Adds in new Skill variations for alternate playstyles.
  
 ### Imp Skills:
 #### Utility Variants:
-- Last Surprise
+- Providence's Kiss (name WIP)
   - Turn invisible for about 5ish seconds. Stuns enemies on activation and on attacking out of it
   - Taken from the Unused Bandit character
     - Known as [banditbodycloak] internally
   - Lowered the cooldown so that the Imp has more of an edge in battle
-- Providence's Escape (Rapture?) {name WIP}
+- Providence's Rapture {name WIP}
   - Teleports the player to a fixed location on the map, usually very high in the sky
   - Taken from the Imp Boss 
   - It is actually broken, but at the same time it adds a bit of strategy to the Imp's Playstyle
@@ -85,7 +82,12 @@ Adds in new Skill variations for alternate playstyles.
 
 ### Alloy Vulture Skills:
 #### Primary Variants:
-- ROBOBALL_BOSS_BALLS
+- Wrath of the Alloys (name WIP?)
+  - Fire 7(?) balls of energy that burn the ground for 5 seconds
+    - Has intense knockback
+  - Taken from the Secret Alloy Boss (the one you have to fight to unlock Loader)
+  - Has a known bug with Multiplayer (documented below in the "Known Bugs" section)
+    - Also needs further tweaking to justify the knockback penalty.
 
 <br>
 
@@ -108,26 +110,25 @@ Adds in new Skill variations for alternate playstyles.
 ### Walker-Turret Skills
 #### Primary Variants:
 - Gauss Cannon
-  - Effectively the same as the base turret's gun, but now it's mobile!
+  - It's just the Engineer's Base Turret's Gun...
 - Gatling Gun (name WIP)
-  - Take the stationary Gun Turrets, and give 'em legs
-  - Has a unique fuction taken directly from the skilldef sheet
-  - I may make this function more like the Airboat Gun from Half-Life 2 in a future update
+  - Same as the Gauss Cannon, but taken from the stationary Turrets instead
+  - I plan on tweaking the functionality to make it a bit more interesting and not simply another damn gatling gun
  
 <br>
 
 ## Plans
-- [ ] Add more Survivors
-- [x] Add Skill Variants
+- [ ] Add more Survivors(?)
+  - [x] Remove Mega Drone(?)
+- [x] Add lore-friendly flavor text
+  - [ ] Balance skills to better fit the survivors
 - [x] Fix general Multiplayer Compatibility
-- [ ] Fix other Multiplayer Bugs
+  - [ ] Fix other Multiplayer Bugs
 - [ ] Change Walker Turret's Name to match it's actual name
 - [ ] Add new icons for all new skills
-- [ ] Find someone who knows how to draw
-- [x] Remove Mega Drone(?)
-- [ ] Add Skin functionality
-- [ ] Balance skills to better fit the survivors
+  - [x] Find someone who knows how to draw
 - [ ] Add in Display Prefabs for each new survivor
+  - [ ] Add Skin functionality
 
 <br>
 
