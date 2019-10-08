@@ -24,17 +24,20 @@ Adds in new Skill variations for alternate playstyles.
 ## Skills Added
 ### Lemurian Skills:
 #### Primary Variants:
-- Elder Lumerian Fireball
+- Elder's Authority
+  - a.k.a Elder Lumerian Fireball
   - Fire 5 fireballs instead of 1
   - Taken directly from the Elder Lumerian
 #### Secondary Variants:
-- Elder Lumerian Fire-Breath
+- Elder's Whisper
+  - a.k.a. Elder Lumerian Fire-Breath
   - Breathe fire and burn enemies
   - Also taken from the EL
   - Was originally a Primary SKill variant, but this led to situations where the Lemurian can't hit anything
     - *cough cough Vagrant*
-- Soldier Bash
+- Soldier Tackle (name WIP)
   - Taken from the Unused Paladin character
+    - Known as [paladinbodyleap] internally
   - Charge a short distance, then stun & knockback anything you hit
   - Also a decent way to move just a little faster
     - Can be used while sprinting!
@@ -47,9 +50,10 @@ Adds in new Skill variations for alternate playstyles.
 #### Utility Variants:
 - Last Surprise
   - Turn invisible for about 5ish seconds. Stuns enemies on activation and on attacking out of it
-  - Taken from the Bandit
+  - Taken from the Unused Bandit character
+    - Known as [banditbodycloak] internally
   - Lowered the cooldown so that the Imp has more of an edge in battle
-- Providence's Escape (Rapture?)
+- Providence's Escape (Rapture?) {name WIP}
   - Teleports the player to a fixed location on the map, usually very high in the sky
   - Taken from the Imp Boss 
   - It is actually broken, but at the same time it adds a bit of strategy to the Imp's Playstyle
@@ -66,12 +70,12 @@ Adds in new Skill variations for alternate playstyles.
   - Auto-travels to where the cursor is at the time of firing
     - This means that it can go clear across the map if aimed properly
 #### Secondary Variants:
-- Soldier Bash
+- Soldier Bash (name WIP)
   - Taken from the Unused Paladin character
   - Charge a short distance, then stun & knockback anything you hit
   - Also a decent way to move just a little faster
     - Can be used while sprinting!
-- Tar Bowl
+- Clay Bowl (Name WIP)
   - Also taken from the Dunestrider boss
   - Fires ~3-4 giant balls of tar that follow the terrain
   - Also has the added bonus of homing in on nearby creatures
@@ -87,12 +91,13 @@ Adds in new Skill variations for alternate playstyles.
 
 ### Drone Skills
 #### Primary Variants:
-- Stock Gun
+- STOCK: Standard S.A. Gun
   - 4-shot burst. Rather weak on its own.
-- Strike Gun
-  - Take the stock gun and OVERCLOCK that sucker
-  - A tad overpowered by the time you get to area 3/4
-- Missile Barrage
+- UPGRADE: Overclocked Gun
+  - Just a beefed-up version of the base skill
+     - A tad overpowered by the time you get to area 3/4
+  - Taken from the Backup/Strike Drone
+- EXPERIMENTAL: Homing Missile Barrage
   - Should be a good weapon, but it actually has a fatal flaw:
     - Rockets will ALWAYS home in on the nearest target
   - I may replace this with the Paladin's rocket in the future
@@ -104,7 +109,7 @@ Adds in new Skill variations for alternate playstyles.
 #### Primary Variants:
 - Gauss Cannon
   - Effectively the same as the base turret's gun, but now it's mobile!
-- Gun Turret Gatling Gun
+- Gatling Gun (name WIP)
   - Take the stationary Gun Turrets, and give 'em legs
   - Has a unique fuction taken directly from the skilldef sheet
   - I may make this function more like the Airboat Gun from Half-Life 2 in a future update
