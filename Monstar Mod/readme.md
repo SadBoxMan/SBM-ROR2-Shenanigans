@@ -24,9 +24,15 @@ Adds in new Skill variations for alternate playstyles.
 ## Skills Added
 ### Lemurian Skills:
 #### Primary Variants:
-- ELDER_FIREBALL
+- Elder Lumerian Fireball
+  - Fire 5 fireballs instead of 1
+  - Taken directly from the Elder Lumerian
 #### Secondary Variants:
-- ELDER_FLAMEBREATH
+- Elder Lumerian Fire-Breath
+  - Breathe fire and burn enemies
+  - Also taken from the EL
+  - Was originally a Primary SKill variant, but this led to situations where the Lemurian can't hit anything
+    - *cough cough Vagrant*
 - Soldier Bash
   - Taken from the Unused Paladin character
   - Charge a short distance, then stun & knockback anything you hit
