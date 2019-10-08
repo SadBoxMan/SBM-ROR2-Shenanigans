@@ -46,7 +46,7 @@ Adds in new Skill variations for alternate playstyles.
 
 ### Clay Templar Skills:
 #### Primary Variants:
-- Tar-Jar Toss
+- Terravolley
   - Taken from the Dunestrider Boss, it fires jars filled with tar at foes.
   - Fires 5 - 11 jars depending on how long you hold the button for
   - Auto-travels to where the cursor is at the time of firing
@@ -73,20 +73,32 @@ Adds in new Skill variations for alternate playstyles.
 
 ### Drone Skills
 #### Primary Variants:
-- STOCK_GUN
-- STRIKE_GUN
-- MISSILE_LAUNCHER
+- Stock Gun
+  - 4-shot burst. Rather weak on its own.
+- Strike Gun
+  - Take the stock gun and OVERCLOCK that sucker
+  - A tad overpowered by the time you get to area 3/4
+- Missile Barrage
+  - Should be a good weapon, but it actually has a fatal flaw:
+    - Rockets will ALWAYS home in on the nearest target
+  - I may replace this with the Paladin's rocket in the future
+    - Make it more like a rocket launcher instead of a Lazy-EZ-Gun
 
 <br>
 
 ### Walker-Turret Skills
 #### Primary Variants:
-- GAUSS_CANNON
-- TURRET_GATLING_GUN
+- Gauss Cannon
+  - Effectively the same as the base turret's gun, but now it's mobile!
+- Gun Turret Gatling Gun
+  - Take the stationary Gun Turrets, and give 'em legs
+  - Has a unique fuction taken directly from the skilldef sheet
+  - I may make this function more like the Airboat Gun from Half-Life 2 in a future update
  
 <br>
 
 ## Plans
+- [ ] Add more Survivors
 - [x] Add Skill Variants
 - [x] Fix general Multiplayer Compatibility
 - [ ] Fix other Multiplayer Bugs
@@ -110,8 +122,8 @@ Adds in new Skill variations for alternate playstyles.
 <br>
 
 ## Special Thanks
-Herb - For their Skill Utility Boiler-Plate Code
-The Risk of Rain 2 Modding Discord - For being a huge help and helping me debug this hot mess
+- Herb - For their Skill Utility Boiler-Plate Code
+- The Risk of Rain 2 Modding Discord - For being a huge help and helping me debug this hot mess
 
 <br>
  
