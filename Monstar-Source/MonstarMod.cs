@@ -1,4 +1,4 @@
-﻿using BepInEx;
+using BepInEx;
 using RoR2;
 using UnityEngine;
 using RoR2.Skills;
@@ -41,7 +41,7 @@ namespace MonstarMod
             _MonstarIconBundle = AssetBundle.LoadFromFile(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/assets/monstaricons");
             //_prefab = _MonstarIconBundle.LoadAsset<GameObject>("Assets/Import/belt/belt.prefab");
             Sprite LemurianBite_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/Lemur_Bite.png");
-            Sprite LemurianFireball_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/Lemur_Fireball.png");
+            Sprite LemurianFireball_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/ror2_lumerian_fire_icon.jpg");
             Sprite GunnerDrone_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/GunnerDrone_Schut.png");
             Sprite WalkerTurret_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/Walker.png");
             Sprite StrikeDrone_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/StrikeDrone_MG.png");
@@ -319,7 +319,7 @@ namespace MonstarMod
             Imp_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/NULL");
             Imp_slot1.skillNameToken = "Providence's Embrace";
             Imp_slot1.skillDescriptionToken = "Slash at your foes with each hand, dealing <style=cIsDamage>2x150% damage</style>. The deep lacerations cause creatures to <style=cIsHealth>bleed</style>.";
-            Imp_slot3.skillNameToken = "Providence's Escape";
+            Imp_slot3.skillNameToken = "Dark Warp";
             Imp_slot3.skillDescriptionToken = "Teleport out of danger. Holds 3 charges.";
             Imp_slot1.icon = HuntressP_Icon;
             Imp_slot3.icon = HuntressU_Icon;
@@ -330,8 +330,8 @@ namespace MonstarMod
             Imp_Float.activationState = new SerializableEntityStateType("EntityStates.Commando.CommandoWeapon.CastSmokescreenNoDelay");
             Imp_Float.activationStateMachineName = "Weapon";
             Imp_Float.icon = mageP_Icon;
-            Imp_Float.skillName = "Lunar_Port";
-            Imp_Float.skillNameToken = "Final Surprise";
+            Imp_Float.skillName = "Dead_Ringer";
+            Imp_Float.skillNameToken = "Last Surprise";
             Imp_Float.skillDescriptionToken = "Go invisible, stun enemies when you come out of it.";
             Imp_Float.interruptPriority = InterruptPriority.PrioritySkill;
             Imp_Float.baseRechargeInterval = 3f;
@@ -365,7 +365,7 @@ namespace MonstarMod
             Imp_Escape.activationStateMachineName = "Body";
             Imp_Escape.icon = mageP_Icon;
             Imp_Escape.skillName = "BEAM_ME_UP";
-            Imp_Escape.skillNameToken = "Last Resort";
+            Imp_Escape.skillNameToken = "Providence's Escape";
             Imp_Escape.skillDescriptionToken = "Brings you far away from danger... <style=cIsHealth><b>but watch out for fall damage</b></style>.";
             Imp_Escape.interruptPriority = InterruptPriority.PrioritySkill;
             Imp_Escape.baseRechargeInterval = 30f;
@@ -404,7 +404,7 @@ namespace MonstarMod
             SkillDef ClayBruiser_slot2 = ClayBruiser_sFam.variants[ClayBruiser_sFam.defaultVariantIndex].skillDef;
             //CharacterBody clayB_pod = ClayBruiserbodyfab.GetComponent<CharacterBody>();
             //clayB_pod.preferredPodPrefab = box;
-            ClayBruiser_slot1.skillNameToken = "Tar Barrage";
+            ClayBruiser_slot1.skillNameToken = "Sandstorm";
             ClayBruiser_slot1.skillDescriptionToken = "Continously shoot Tar at enemies for <style=cIsDamage>30% damage.</style>";
             ClayBruiser_slot2.skillNameToken = "Roar of the Sands";
             ClayBruiser_slot2.skillDescriptionToken = "Spray a burst of Tar that covers enemies, slowing down their movements and knocking them back a fair distance.";
@@ -417,7 +417,7 @@ namespace MonstarMod
             Clay_gun2.activationStateMachineName = "Weapon";
             Clay_gun2.icon = mageP_Icon;
             Clay_gun2.skillName = "Pot_Toss";
-            Clay_gun2.skillNameToken = "Tar-Jar Barrage";
+            Clay_gun2.skillNameToken = "Terrastorm";
             Clay_gun2.skillDescriptionToken = "<style=cIsDamage>(Hold the button down to charge)</style> Launch a barrage of Jars filled with Tar that deal <style=cIsDamage>(5-11)x100% damage</style> each.";
             Clay_gun2.interruptPriority = InterruptPriority.Skill;
             Clay_gun2.baseRechargeInterval = 3f;
@@ -450,7 +450,7 @@ namespace MonstarMod
             Clay_melee2.activationStateMachineName = "Weapon";
             Clay_melee2.icon = mageP_Icon;
             Clay_melee2.skillName = "LemurTackle";
-            Clay_melee2.skillNameToken = "Gun-Bash";
+            Clay_melee2.skillNameToken = "Soldier Tackle";
             Clay_melee2.skillDescriptionToken = "A charging tackle that <style=cIsDamage>stuns foes, knocking them back</style> and dealing <style=cIsDamage>250% damage</style>.";
             Clay_melee2.interruptPriority = InterruptPriority.Skill;
             Clay_melee2.baseRechargeInterval = 5f;
@@ -632,7 +632,7 @@ namespace MonstarMod
             GunnerDrone_Gun3.canceledFromSprinting = false;
             GunnerDrone_Gun3.mustKeyPress = false;
             GunnerDrone_Gun3.fullRestockOnAssign = true;
-            GunnerDrone_Gun3.skillIndex = 117;
+            GunnerDrone_Gun3.skillIndex = 120;
 
             SkillFamily.Variant GD_variant2 = new SkillFamily.Variant();
             GD_variant2.skillDef = GunnerDrone_Gun3;
@@ -662,7 +662,7 @@ namespace MonstarMod
             SkillDef Walker_Beam3 = ScriptableObject.CreateInstance<SkillDef>();
             Walker_Beam3.activationState = new SerializableEntityStateType("EntityStates.EngiTurret.EngiTurretWeapon.FireGauss");
             Walker_Beam3.activationStateMachineName = "Weapon";
-            Walker_Beam3.icon = mageP_Icon;
+            Walker_Beam3.icon = EngiSP_Icon;
             Walker_Beam3.skillName = "Walker_Beam_3";
             Walker_Beam3.skillNameToken = "Gauss Cannon";
             Walker_Beam3.skillDescriptionToken = "Fire a Gauss Cannon for <style=cIsDamage>up to 70% damage</style>.";
@@ -693,17 +693,17 @@ namespace MonstarMod
 
             //Walker Beam Variant 2
             SkillDef Walker_Beam2 = ScriptableObject.CreateInstance<SkillDef>();
-            Walker_Beam2.activationState = new SerializableEntityStateType("EntityStates.RoboBallMini.Weapon.FireEyeBeam");
+            Walker_Beam2.activationState = new SerializableEntityStateType("EntityStates.Drone.DroneWeapon.FireGatling");
             Walker_Beam2.activationStateMachineName = "Weapon";
-            Walker_Beam2.icon = mageP_Icon;
+            Walker_Beam2.icon = commandoP_Icon;
             Walker_Beam2.skillName = "Walker_Beam_2";
-            Walker_Beam2.skillNameToken = "Alloy Beam";
-            Walker_Beam2.skillDescriptionToken = "Fire a long-ranged energy beam for <style=cIsDamage>15% damage</style>.";
+            Walker_Beam2.skillNameToken = "Jury-Rigged Gatling Gun";
+            Walker_Beam2.skillDescriptionToken = "Fire a gatling-gun that deals <style=cIsDamage>40x30% damage</style>.";
             Walker_Beam2.interruptPriority = InterruptPriority.Any;
-            Walker_Beam2.baseRechargeInterval = 0f;
-            Walker_Beam2.baseMaxStock = 1;
-            Walker_Beam2.rechargeStock = 1;
-            Walker_Beam2.isBullets = false;
+            Walker_Beam2.baseRechargeInterval = 1.5f;
+            Walker_Beam2.baseMaxStock = 42;
+            Walker_Beam2.rechargeStock = 3;
+            Walker_Beam2.isBullets = true;
             Walker_Beam2.shootDelay = 0.1f;
             Walker_Beam2.beginSkillCooldownOnSkillEnd = false;
             Walker_Beam2.requiredStock = 1;
@@ -712,8 +712,8 @@ namespace MonstarMod
             Walker_Beam2.noSprint = true;
             Walker_Beam2.canceledFromSprinting = false;
             Walker_Beam2.mustKeyPress = false;
-            Walker_Beam2.fullRestockOnAssign = true;
-            Walker_Beam2.skillIndex = 129;
+            Walker_Beam2.fullRestockOnAssign = false;
+            Walker_Beam2.skillIndex = 154;
 
             SkillFamily.Variant WT_variant2 = new SkillFamily.Variant();
             WT_variant2.skillDef = Walker_Beam2;
