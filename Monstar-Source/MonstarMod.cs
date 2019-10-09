@@ -25,29 +25,57 @@ namespace MonstarMod
     public class Monstar : BaseUnityPlugin
     {
 
-
-
-
-
-
-
         public void Start()
         {
-
+            
+            //Declaring type for Bundle
             AssetBundle _MonstarIconBundle;
+            //For declaring the prefab
             //GameObject _prefab;
 
-            //This is declaring a custom icon from an imported asset bundle
+            //Priming the Asset Bundle for imports
             _MonstarIconBundle = AssetBundle.LoadFromFile(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/assets/monstaricons");
+            
+            //Prefab Load Example
             //_prefab = _MonstarIconBundle.LoadAsset<GameObject>("Assets/Import/belt/belt.prefab");
+            
+            //Lemurian Icons
             Sprite LemurianBite_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_lumerian_bite_icon.png");
             Sprite LemurianFireball_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/ror2_lumerian_fire_icon.jpg");
-            Sprite GunnerDrone_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_Drone_Standard_Fire.png");
+            //Sprite LemurianSuperFireball_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/NAME.png");
+            //Sprite LemurianDragonBreath_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/NAME.png");
+            
+            //Shoulder Bash Icon
+            //Sprite WarioBash_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/NAME.png");
+            
+            //Imp Icons
+            //Sprite ImpSwipe_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/NAME.png");
+            //Sprite ImpBlink_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/NAME.png");
+            //Sprite ImpCloak_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/NAME.png");
+            //Sprite ImpSuperBlink_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/NAME.png");
+            
+            //Clay Icons
+            //Sprite ClayMinigun_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/NAME.png");
+            //Sprite ClaySpray_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/NAME.png");
+            //Sprite ClayJarToss_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/NAME.png");
+            //Sprite ClayBowl_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/NAME.png");
+            
+            //Vulture Icons
+            //Sprite VultureWindblade_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/NAME.png");
+            //Sprite VultureFlight_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/NAME.png");
+            //Sprite VultureSuperBall_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/NAME.png");
+            
+            //Walker Turret Icons
             Sprite WalkerTurret_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/Walker.png");
+            
+            //Gunner Drone Icons
+            Sprite GunnerDrone_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_Drone_Standard_Fire.png");
             Sprite StrikeDrone_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/StrikeDrone_MG.png");
+            //Sprite MissileDrone_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/NAME.png");
 
 
-            //Toolbot Icons and Box setup
+
+            //MULT Icon & Survivor Pod Setup
             GameObject ToolBotBodyfab = BodyCatalog.FindBodyPrefab("ToolbotBody");
             CharacterBody toolbox = ToolBotBodyfab.GetComponent<CharacterBody>();
             GameObject box = toolbox.preferredPodPrefab;
@@ -60,14 +88,18 @@ namespace MonstarMod
             SkillFamily ToolBot_sFam = ToolBot_secondary.skillFamily;
             SkillFamily ToolBot_uFam = ToolBot_utility.skillFamily;
             SkillFamily ToolBot_spFam = ToolBot_special.skillFamily;
+            //MULT Icons
             Sprite ToolBotP_Icon = ToolBot_pFam.variants[ToolBot_pFam.defaultVariantIndex].skillDef.icon;
             Sprite ToolBotS_Icon = ToolBot_sFam.variants[ToolBot_sFam.defaultVariantIndex].skillDef.icon;
             Sprite ToolBotU_Icon = ToolBot_uFam.variants[ToolBot_uFam.defaultVariantIndex].skillDef.icon;
             Sprite ToolBotSP_Icon = ToolBot_spFam.variants[ToolBot_spFam.defaultVariantIndex].skillDef.icon;
 
 
-            //Commando icons and Survivor Pod setup
+
+            //Commando Icon & Survivor Pod Setup
             GameObject commandobodyfab = BodyCatalog.FindBodyPrefab("CommandoBody");
+            CharacterBody surv_pod = commandobodyfab.GetComponent<CharacterBody>();
+            GameObject pod = surv_pod.preferredPodPrefab;
             SkillLocator commando_SL = commandobodyfab.GetComponent<SkillLocator>();
             GenericSkill commando_primary = commando_SL.primary;
             GenericSkill commando_secondary = commando_SL.secondary;
@@ -77,14 +109,15 @@ namespace MonstarMod
             SkillFamily commando_sFam = commando_secondary.skillFamily;
             SkillFamily commando_uFam = commando_utility.skillFamily;
             SkillFamily commando_spFam = commando_special.skillFamily;
+            //Commando Icons
             Sprite commandoP_Icon = commando_pFam.variants[commando_pFam.defaultVariantIndex].skillDef.icon;
             Sprite commandoS_Icon = commando_sFam.variants[commando_sFam.defaultVariantIndex].skillDef.icon;
             Sprite commandoU_Icon = commando_uFam.variants[commando_uFam.defaultVariantIndex].skillDef.icon;
             Sprite commandoSP_Icon = commando_spFam.variants[commando_spFam.defaultVariantIndex].skillDef.icon;
-            CharacterBody surv_pod = commandobodyfab.GetComponent<CharacterBody>();
-            GameObject pod = surv_pod.preferredPodPrefab;
 
-            //Engineer icon setup
+
+
+            //Engineer Setup
             GameObject Engibodyfab = BodyCatalog.FindBodyPrefab("EngiBody");
             SkillLocator Engi_SL = Engibodyfab.GetComponent<SkillLocator>();
             GenericSkill Engi_primary = Engi_SL.primary;
@@ -95,13 +128,15 @@ namespace MonstarMod
             SkillFamily Engi_sFam = Engi_secondary.skillFamily;
             SkillFamily Engi_uFam = Engi_utility.skillFamily;
             SkillFamily Engi_spFam = Engi_special.skillFamily;
+            //Engineer Icons
             Sprite EngiP_Icon = Engi_pFam.variants[Engi_pFam.defaultVariantIndex].skillDef.icon;
             Sprite EngiS_Icon = Engi_sFam.variants[Engi_sFam.defaultVariantIndex].skillDef.icon;
             Sprite EngiU_Icon = Engi_uFam.variants[Engi_uFam.defaultVariantIndex].skillDef.icon;
             Sprite EngiSP_Icon = Engi_spFam.variants[Engi_spFam.defaultVariantIndex].skillDef.icon;
 
 
-            //Mage icon setup
+
+            //Mage Setup
             GameObject magebodyfab = BodyCatalog.FindBodyPrefab("MageBody");
             SkillLocator mage_SL = magebodyfab.GetComponent<SkillLocator>();
             GenericSkill mage_primary = mage_SL.primary;
@@ -112,12 +147,15 @@ namespace MonstarMod
             SkillFamily mage_sFam = mage_secondary.skillFamily;
             SkillFamily mage_uFam = mage_utility.skillFamily;
             SkillFamily mage_spFam = mage_special.skillFamily;
+            //Mage Icons
             Sprite mageP_Icon = mage_pFam.variants[mage_pFam.defaultVariantIndex].skillDef.icon;
             Sprite mageS_Icon = mage_sFam.variants[mage_sFam.defaultVariantIndex].skillDef.icon;
             Sprite mageU_Icon = mage_uFam.variants[mage_uFam.defaultVariantIndex].skillDef.icon;
             Sprite mageSP_Icon = mage_spFam.variants[mage_spFam.defaultVariantIndex].skillDef.icon;
 
-            //Loader icon setup
+
+
+            //Loader Setup
             GameObject loaderbodyfab = BodyCatalog.FindBodyPrefab("LoaderBody");
             SkillLocator loader_SL = loaderbodyfab.GetComponent<SkillLocator>();
             GenericSkill loader_primary = loader_SL.primary;
@@ -128,12 +166,15 @@ namespace MonstarMod
             SkillFamily loader_sFam = loader_secondary.skillFamily;
             SkillFamily loader_uFam = loader_utility.skillFamily;
             SkillFamily loader_spFam = loader_special.skillFamily;
+            //Loader Icons
             Sprite loaderP_Icon = loader_pFam.variants[loader_pFam.defaultVariantIndex].skillDef.icon;
             Sprite loaderS_Icon = loader_sFam.variants[loader_sFam.defaultVariantIndex].skillDef.icon;
             Sprite loaderU_Icon = loader_uFam.variants[loader_uFam.defaultVariantIndex].skillDef.icon;
             Sprite loaderSP_Icon = loader_spFam.variants[loader_spFam.defaultVariantIndex].skillDef.icon;
 
-            //Mercenary Icon Setup
+
+
+            //Mercenary Setup
             GameObject Mercbodyfab = BodyCatalog.FindBodyPrefab("MercBody");
             SkillLocator Merc_SL = Mercbodyfab.GetComponent<SkillLocator>();
             GenericSkill Merc_primary = Merc_SL.primary;
@@ -144,12 +185,15 @@ namespace MonstarMod
             SkillFamily Merc_sFam = Merc_secondary.skillFamily;
             SkillFamily Merc_uFam = Merc_utility.skillFamily;
             SkillFamily Merc_spFam = Merc_special.skillFamily;
+            //Merc Icons
             Sprite MercP_Icon = Merc_pFam.variants[Merc_pFam.defaultVariantIndex].skillDef.icon;
             Sprite MercS_Icon = Merc_sFam.variants[Merc_sFam.defaultVariantIndex].skillDef.icon;
             Sprite MercU_Icon = Merc_uFam.variants[Merc_uFam.defaultVariantIndex].skillDef.icon;
             Sprite MercSP_Icon = Merc_spFam.variants[Merc_spFam.defaultVariantIndex].skillDef.icon;
 
-            //Huntress Icon Setup
+
+
+            //Huntress Setup
             GameObject Huntressbodyfab = BodyCatalog.FindBodyPrefab("HuntressBody");
             SkillLocator Huntress_SL = Huntressbodyfab.GetComponent<SkillLocator>();
             GenericSkill Huntress_primary = Huntress_SL.primary;
@@ -160,12 +204,15 @@ namespace MonstarMod
             SkillFamily Huntress_sFam = Huntress_secondary.skillFamily;
             SkillFamily Huntress_uFam = Huntress_utility.skillFamily;
             SkillFamily Huntress_spFam = Huntress_special.skillFamily;
+            //Huntress Icons
             Sprite HuntressP_Icon = Huntress_pFam.variants[Huntress_pFam.defaultVariantIndex].skillDef.icon;
             Sprite HuntressS_Icon = Huntress_sFam.variants[Huntress_sFam.defaultVariantIndex].skillDef.icon;
             Sprite HuntressU_Icon = Huntress_uFam.variants[Huntress_uFam.defaultVariantIndex].skillDef.icon;
             Sprite HuntressSP_Icon = Huntress_spFam.variants[Huntress_spFam.defaultVariantIndex].skillDef.icon;
 
-            //REX Icon Setup
+
+
+            //REX Setup
             GameObject Treebotbodyfab = BodyCatalog.FindBodyPrefab("TreebotBody");
             SkillLocator Treebot_SL = Treebotbodyfab.GetComponent<SkillLocator>();
             GenericSkill Treebot_primary = Treebot_SL.primary;
@@ -176,6 +223,7 @@ namespace MonstarMod
             SkillFamily Treebot_sFam = Treebot_secondary.skillFamily;
             SkillFamily Treebot_uFam = Treebot_utility.skillFamily;
             SkillFamily Treebot_spFam = Treebot_special.skillFamily;
+            //REX Icons
             Sprite TreebotP_Icon = Treebot_pFam.variants[Treebot_pFam.defaultVariantIndex].skillDef.icon;
             Sprite TreebotS_Icon = Treebot_sFam.variants[Treebot_sFam.defaultVariantIndex].skillDef.icon;
             Sprite TreebotU_Icon = Treebot_uFam.variants[Treebot_uFam.defaultVariantIndex].skillDef.icon;
@@ -183,25 +231,26 @@ namespace MonstarMod
 
 
 
-
-
-
             //Lemurian Skills
             GameObject lemur_body = BodyCatalog.FindBodyPrefab("LemurianBody");
-            SkillLocator lemur_SL = lemur_body.GetComponent<SkillLocator>();
+            
             CharacterBody lemur_pod = lemur_body.GetComponent<CharacterBody>();
             lemur_pod.preferredPodPrefab = box;
+            
+            SkillLocator lemur_SL = lemur_body.GetComponent<SkillLocator>();
             GenericSkill lemur_fireball = lemur_SL.primary;
             GenericSkill lemur_bite = lemur_SL.secondary;
             SkillFamily lemur_fireball_data = lemur_fireball.skillFamily;
             SkillFamily lemur_bite_data = lemur_bite.skillFamily;
             SkillDef lemurianFireball = lemur_fireball_data.variants[lemur_fireball_data.defaultVariantIndex].skillDef;
             SkillDef lemurianBite = lemur_bite_data.variants[lemur_bite_data.defaultVariantIndex].skillDef;
+            
             lemurianFireball.skillNameToken = "Distinctive Fireball";
             lemurianFireball.skillDescriptionToken = "Spit a flaming glob of bile at enemies for <style=cIsDamage>100% damage.</style>";
+            lemurianFireball.icon = LemurianFireball_Icon;
+            
             lemurianBite.skillNameToken = "Instinctive Bite";
             lemurianBite.skillDescriptionToken = "Bite Enemies for <style=cIsDamage>200% damage.</style>";
-            lemurianFireball.icon = LemurianFireball_Icon;
             lemurianBite.icon = LemurianBite_Icon;
 
 
@@ -307,6 +356,13 @@ namespace MonstarMod
 
             //Imp Skills
             GameObject Impbodyfab = BodyCatalog.FindBodyPrefab("ImpBody");
+            
+            CharacterBody Imp_pod = Impbodyfab.GetComponent<CharacterBody>();
+            //Imp_pod.preferredPodPrefab = box;
+            Imp_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/NULL");
+            Imp_pod.bodyFlags = CharacterBody.BodyFlags.IgnoreFallDamage;
+            Imp_pod.bodyFlags = CharacterBody.BodyFlags.SprintAnyDirection;
+            
             SkillLocator Imp_SL = Impbodyfab.GetComponent<SkillLocator>();
             GenericSkill Imp_primary = Imp_SL.primary;
             GenericSkill Imp_utility = Imp_SL.utility;
@@ -314,21 +370,14 @@ namespace MonstarMod
             SkillFamily Imp_uFam = Imp_utility.skillFamily;
             SkillDef Imp_slot1 = Imp_pFam.variants[Imp_pFam.defaultVariantIndex].skillDef;
             SkillDef Imp_slot3 = Imp_uFam.variants[Imp_uFam.defaultVariantIndex].skillDef;
-            CharacterBody Imp_pod = Impbodyfab.GetComponent<CharacterBody>();
-            //Imp_pod.preferredPodPrefab = box;
-            Imp_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/NULL");
+            
             Imp_slot1.skillNameToken = "Providence's Embrace";
             Imp_slot1.skillDescriptionToken = "Slash at your foes with each hand, dealing <style=cIsDamage>2x150% damage</style>. The deep lacerations cause creatures to <style=cIsHealth>bleed</style>.";
+            Imp_slot1.icon = HuntressP_Icon;
+            
             Imp_slot3.skillNameToken = "Dark Warp";
             Imp_slot3.skillDescriptionToken = "Teleport out of danger. Holds 3 charges.";
-            Imp_slot1.icon = HuntressP_Icon;
             Imp_slot3.icon = HuntressU_Icon;
-
-            //Imp Extras
-            Imp_pod.bodyFlags = CharacterBody.BodyFlags.IgnoreFallDamage;
-            Imp_pod.bodyFlags = CharacterBody.BodyFlags.SprintAnyDirection;
-            
-
 
 
             //Imp Utility 1
@@ -355,7 +404,6 @@ namespace MonstarMod
             Imp_Float.fullRestockOnAssign = true;
             Imp_Float.skillIndex = 9;
             
-
             SkillFamily.Variant imp_U1variant = new SkillFamily.Variant();
             imp_U1variant.skillDef = Imp_Float;
             imp_U1variant.unlockableName = "IMP_P1";
@@ -401,6 +449,10 @@ namespace MonstarMod
 
             //Clay Templar Skills
             GameObject ClayBruiserbodyfab = BodyCatalog.FindBodyPrefab("ClayBruiserBody");
+            
+            //CharacterBody clayB_pod = ClayBruiserbodyfab.GetComponent<CharacterBody>();
+            //clayB_pod.preferredPodPrefab = box;
+            
             SkillLocator ClayBruiser_SL = ClayBruiserbodyfab.GetComponent<SkillLocator>();
             GenericSkill ClayBruiser_primary = ClayBruiser_SL.primary;
             GenericSkill ClayBruiser_secondary = ClayBruiser_SL.secondary;
@@ -408,10 +460,11 @@ namespace MonstarMod
             SkillFamily ClayBruiser_sFam = ClayBruiser_secondary.skillFamily;
             SkillDef ClayBruiser_slot1 = ClayBruiser_pFam.variants[ClayBruiser_pFam.defaultVariantIndex].skillDef;
             SkillDef ClayBruiser_slot2 = ClayBruiser_sFam.variants[ClayBruiser_sFam.defaultVariantIndex].skillDef;
-            //CharacterBody clayB_pod = ClayBruiserbodyfab.GetComponent<CharacterBody>();
-            //clayB_pod.preferredPodPrefab = box;
+
             ClayBruiser_slot1.skillNameToken = "Sandstorm";
             ClayBruiser_slot1.skillDescriptionToken = "Continously shoot Tar at enemies for <style=cIsDamage>30% damage.</style>";
+            //ClayBruiser_slot1.icon = TreebotU_Icon;
+            
             ClayBruiser_slot2.skillNameToken = "Roar of Earth";
             ClayBruiser_slot2.skillDescriptionToken = "Spray a burst of Tar that covers enemies, slowing down their movements and knocking them back a fair distance.";
             ClayBruiser_slot2.icon = TreebotU_Icon;
@@ -519,26 +572,27 @@ namespace MonstarMod
 
             //Vulture Skills
             GameObject birb_body = BodyCatalog.FindBodyPrefab("VultureBody");
-            SkillLocator birb_SL = birb_body.GetComponent<SkillLocator>();
+            
             CharacterBody birb_pod = birb_body.GetComponent<CharacterBody>();
-
-
             birb_pod.preferredPodPrefab = box;
             birb_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/TreebotCrosshair");
+            
+            SkillLocator birb_SL = birb_body.GetComponent<SkillLocator>();
             GenericSkill birb_feather = birb_SL.primary;
             GenericSkill birb_flight = birb_SL.utility;
             SkillFamily birb_feather_data = birb_feather.skillFamily;
             SkillFamily birb_flight_data = birb_flight.skillFamily;
             SkillDef vultureFeather = birb_feather_data.variants[birb_feather_data.defaultVariantIndex].skillDef;
             SkillDef vultureFlight = birb_flight_data.variants[birb_flight_data.defaultVariantIndex].skillDef;
+            
             vultureFeather.skillNameToken = "Carrion Windblade";
             vultureFeather.skillDescriptionToken = "Fling a crescent-shaped gust of wind at foes for <style=cIsDamage>225% damage.</style>";
+            vultureFeather.icon = MercS_Icon;
+            
             vultureFlight.skillNameToken = "Flight";
             vultureFlight.skillDescriptionToken = "Transition from standing to Flying. Rise and fall by using the Camera and forward/backward.";
-            vultureFeather.icon = MercS_Icon;
-
             
-
+            //Vulture Primary Variant 1
             SkillDef Vulture_P2 = ScriptableObject.CreateInstance<SkillDef>();
             Vulture_P2.activationState = new SerializableEntityStateType("EntityStates.RoboBallBoss.Weapon.ChargeSuperEyeblast");
             Vulture_P2.activationStateMachineName = "Weapon";
@@ -572,27 +626,33 @@ namespace MonstarMod
 
 
 
-            //GSM Drone Skills
+            //G.S.M. Drone Skills
             GameObject Drone1bodyfab = BodyCatalog.FindBodyPrefab("Drone1Body");
-            //Base Crosshair is fine
-            //Drone1bodyfab.GetComponent<CharacterBody>().crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/tiltedbracketcrosshair");
+
+            CharacterBody Drone1_pod = Drone1bodyfab.GetComponent<CharacterBody>();
+            Drone1_pod.preferredPodPrefab = box;
+            Drone1_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/StandardCrosshair");
+            
             SkillLocator Drone1_SL = Drone1bodyfab.GetComponent<SkillLocator>();
             GenericSkill Drone1_primary = Drone1_SL.primary;
             SkillFamily Drone1_pFam = Drone1_primary.skillFamily;
             SkillDef Drone1_slot1 = Drone1_pFam.variants[Drone1_pFam.defaultVariantIndex].skillDef;
-            CharacterBody Drone1_pod = Drone1bodyfab.GetComponent<CharacterBody>();
-            Drone1_pod.preferredPodPrefab = box;
-            Drone1_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/StandardCrosshair");
+           
             Drone1_slot1.skillNameToken = "STOCK: Standard SA Gun";
             Drone1_slot1.skillDescriptionToken = "Fire a volley of 4 rounds that deals <style=cIsDamage>4x50% damage</style>.";
             Drone1_slot1.icon = GunnerDrone_Icon;
-
 
             //Attempt at enabling Equipment Slot
             //EquipmentSlot Drone1_item_module = Drone1bodyfab.GetComponent<EquipmentSlot>();
             //SkillLocator.PassiveSkill Nanomachines = new SkillLocator.PassiveSkill();
             //Nanomachines.enabled = true;
 
+            //Gunner Skin Attempt
+            //SkinDef DroneChassis = ScriptableObject.CreateInstance<SkinDef>();
+            //DroneChassis.nameToken = "Test";
+            //ModelSkinController Chase = DroneChassis.
+            
+            
             //Gunner Drone Variant 1
             SkillDef GunnerDrone_Gun2 = ScriptableObject.CreateInstance<SkillDef>();
             GunnerDrone_Gun2.activationState = new SerializableEntityStateType("EntityStates.Drone.DroneWeapon.FireTurret");
@@ -624,13 +684,6 @@ namespace MonstarMod
             int GD2prevLength = Drone1_pFam.variants.Length;
             System.Array.Resize<SkillFamily.Variant>(ref Drone1_pFam.variants, GD2prevLength + 1);
             Drone1_pFam.variants[GD2prevLength] = GD_variant1;
-
-            //Gunner Skin Attempt
-            //SkinDef DroneChassis = ScriptableObject.CreateInstance<SkinDef>();
-            //DroneChassis.nameToken = "Test";
-            //ModelSkinController Chase = DroneChassis.
-
-
 
 
             //Gunner Drone Variant 2
@@ -702,13 +755,16 @@ namespace MonstarMod
 
             //Walker Turret Skills
             GameObject EngiWalkerTurretbodyfab = BodyCatalog.FindBodyPrefab("EngiWalkerTurretBody");
+            
+            CharacterBody EngiWalkerTurret_pod = EngiWalkerTurretbodyfab.GetComponent<CharacterBody>();
+            EngiWalkerTurret_pod.preferredPodPrefab = box;
+            EngiWalkerTurret_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/BanditCrosshair");
+            
             SkillLocator EngiWalkerTurret_SL = EngiWalkerTurretbodyfab.GetComponent<SkillLocator>();
             GenericSkill EngiWalkerTurret_primary = EngiWalkerTurret_SL.primary;
             SkillFamily EngiWalkerTurret_pFam = EngiWalkerTurret_primary.skillFamily;
             SkillDef EngiWalkerTurret_slot1 = EngiWalkerTurret_pFam.variants[EngiWalkerTurret_pFam.defaultVariantIndex].skillDef;
-            CharacterBody EngiWalkerTurret_pod = EngiWalkerTurretbodyfab.GetComponent<CharacterBody>();
-            EngiWalkerTurret_pod.preferredPodPrefab = box;
-            EngiWalkerTurret_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/BanditCrosshair");
+
             EngiWalkerTurret_slot1.skillNameToken = "TR58 Carbonizer Beam";
             EngiWalkerTurret_slot1.skillDescriptionToken = "Fire a laser that deals <style=cIsDamage>30% damage</style> per tick and slows down enemies.";
             EngiWalkerTurret_slot1.icon = WalkerTurret_Icon;
@@ -782,6 +838,9 @@ namespace MonstarMod
 
 
             /*
+            I originally had all of the drones included, but decided it would be more interesting to merge them all
+            Once I figure out the Skin functionality, I will include these as alts to the normal drone.
+            
             var Missile_Drone = new SurvivorDef
             {
                 bodyPrefab = BodyCatalog.FindBodyPrefab("MissileDroneBody"),
@@ -807,6 +866,9 @@ namespace MonstarMod
 
 
             /*
+            I was going to make the Strike Drone the main drone, but it's internal stats are too high for the game to be any challenge,
+            so sadly it was cut.
+            
             var Strike_Drone = new SurvivorDef
             {
                 bodyPrefab = BodyCatalog.FindBodyPrefab("BackupDroneBody"),
@@ -830,6 +892,9 @@ namespace MonstarMod
 
 
             /*
+            Too big, and I couldn't think of any skills to add.
+            Not worth the trouble in my opinion
+            
             var Super_Drone = new SurvivorDef
             {
                 bodyPrefab = BodyCatalog.FindBodyPrefab("MegaDroneBody"),
@@ -859,6 +924,11 @@ namespace MonstarMod
 
 
             /*
+            This was an attempt at editing the base skills
+            However, this also affects all other instances of whichever character you edit
+            
+            For some extra fun, enable this block of code. It turns all Lemurians into absolute units
+            
             int bodyIndex = BodyCatalog.FindBodyIndex("BackupDroneBody");
             SkillLocator skillLocator = BodyCatalog.GetBodyPrefab(bodyIndex).GetComponent<SkillLocator>();
             SkillFamily skillFamily = skillLocator.primary.skillFamily;
@@ -868,12 +938,10 @@ namespace MonstarMod
             defaultSkill.activationState = (SerializableEntityStateType)box2;
             */
 
-            //SurvivorAPI.SurvivorDefinitions.Insert(3, survivor);
-            //SurvivorAPI.SurvivorDefinitions.Insert(2, survivor2);
-            //SurvivorAPI.SurvivorDefinitions.Insert(3, Engi_Walker);
 
-            //tacks on the survivors to the end of the list
 
+
+            //Garbage code from some early test
             //R2API.SurvivorAPI.AddSurvivorOnReady(test);
             //SurvivorAPI.SurvivorDefinitions.Insert(3, ClayB_Surv);
 
@@ -972,6 +1040,7 @@ namespace MonstarMod
                     survivorIndex = SurvivorIndex.Count + 1
                 };
 
+                //The insert only works for one character. If you try to do it for other survivors, it breaks
                 SurvivorAPI.SurvivorDefinitions.Insert(4, Engi_Walker);
                 R2API.SurvivorAPI.AddSurvivorOnReady(Gun_Drone);
                 R2API.SurvivorAPI.AddSurvivorOnReady(Lemur_Surv);
@@ -986,7 +1055,8 @@ namespace MonstarMod
 
         }
 
-        //The Update() method is run on every frame of the game.
+        //Leftover code from the 'Bab's First Mod' Boiler-Plate
+        //Left here for others 
         public void Update()
         {
 
