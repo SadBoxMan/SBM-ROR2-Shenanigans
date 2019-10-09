@@ -61,7 +61,8 @@ Adds in new Skill variations for alternate playstyles.
   - Teleports the player to a fixed location on the map, usually very high in the sky
   - Taken from the Imp Boss 
   - It is actually broken, but at the same time it adds a bit of strategy to the Imp's Playstyle
-    - Teleport to a safe, fixed location at the expense of possible fall damage due to the height of the location.
+    - ~~Teleport to a safe, fixed location at the expense of possible fall damage due to the height of the location.~~
+    - No fall damage in Single Player
 
 
 <br>
@@ -144,12 +145,13 @@ Adds in new Skill variations for alternate playstyles.
 <br>
 
 ## Known Bugs
-- Various Multiplayer Bugs
+- Multiplayer Bugs:
   - Vulture's "Wrath of the Alloys" only has knockback for the Host
   - Walker Turret only works for the Host
   - Icons do not show up in-game for other players
   - Drone's "Missile Barrage" has a mild graphical glitch
   - Templar's Clay Bowl locks other players in place during activation
+  - Imp takes fall damage and cannot sprint in all directions
   
 <br>
 
