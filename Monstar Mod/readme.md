@@ -149,6 +149,7 @@ Adds in new Skill variations for alternate playstyles.
   - Walker Turret only works for the Host
   - Icons do not show up in-game for other players
   - Drone's "Missile Barrage" has a mild graphical glitch
+  - Templar's Clay Bowl locks other players in place during activation
   
 <br>
 
