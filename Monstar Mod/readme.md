@@ -24,96 +24,102 @@ Adds in new Skill variations for alternate playstyles.
 ## Skills Added
 ### Lemurian Skills:
 #### Primary Variants:
-- Elder's Authority
+- **Elder's Authority**
   - Fire 5 fireballs instead of 1
   - Taken directly from the Elder Lumerian
 #### Secondary Variants:
-- Elder's Whisper
+- **Elder's Whisper**
   - Breathe fire and inflict burn on enemies
   - Also taken from the Elder Lumerian
   - Was originally a Primary SKill variant, but this led to situations where the Lemurian can't hit anything
     - *cough cough Vagrant*
-- Soldier Tackle (name WIP)
+- **Soldier Tackle (name WIP)**
   - Taken from the Unused Paladin character
   - Charge a short distance, then stun & knockback anything you hit
   - Also a decent way to move just a little faster
     - Can be used while sprinting!
-  - I may remove it from the Lemurian since it fits better with the Clay Templar.
-    - Then again, it's a helluva lot of fun since the Lemurian is just a helmet away from being a football player
     
 <br>
  
 ### Imp Skills:
+#### Passive:
+- **Sprint in any direction**
+  - The Imp is already floating everywhere, doesn't make much sense for it to not be able to just float at equal speeds in any direction
+- **Take no fall damage**
+  - The jump is naturally very high, and just 1 jump upgrade inflicts fall-damage
+- **NOTE: PASSIVE FLAGS ONLY WORK IN SINGLE PLAYER. WHEN PLAYING ONLINE THEY BREAK**
 #### Utility Variants:
-- Providence's Kiss (name WIP)
+- **Shadow Sneak (name WIP)**
   - Turn invisible for about 5ish seconds. Stuns enemies on activation and on attacking out of it
   - Taken from the Unused Bandit character
     - Known as [banditbodycloak] internally
   - Lowered the cooldown so that the Imp has more of an edge in battle
-- Providence's Rapture {name WIP}
+- **Providence's Rapture {name WIP}**
   - Teleports the player to a fixed location on the map, usually very high in the sky
   - Taken from the Imp Boss 
   - It is actually broken, but at the same time it adds a bit of strategy to the Imp's Playstyle
-    - Teleport to a safe, fixed location at the expense of possible fall damage due to the height of the location.
-
+    - Teleport to a safe, fixed location.... Which is usually very high in the sky (hence the Fall Damage change)
 
 <br>
 
 ### Clay Templar Skills:
 #### Primary Variants:
-- Terravolley
+- **Terravolley**
   - Taken from the Dunestrider Boss, it fires jars filled with tar at foes.
   - Fires 5 - 11 jars depending on how long you hold the button for
   - Auto-travels to where the cursor is at the time of firing
     - This means that it can go clear across the map if aimed properly
 #### Secondary Variants:
-- Soldier Bash (name WIP)
+- **Soldier Bash (name WIP)**
   - Taken from the Unused Paladin character
   - Charge a short distance, then stun & knockback anything you hit
   - Also a decent way to move just a little faster
     - Can be used while sprinting!
-- Clay Bowl (Name WIP)
+- **Clay Bowl (Name WIP)**
   - Also taken from the Dunestrider boss
   - Fires ~3-4 giant balls of tar that follow the terrain
   - Also has the added bonus of homing in on nearby creatures
   - Can't do jack against airborne targets
+  - **HAS A BUG IN MULTIPLAYER, SEE BUG NOTES BELOW FOR DETAILS**
 
 <br>
 
 ### Alloy Vulture Skills:
 #### Primary Variants:
-- Wrath of the Alloys (name WIP?)
+- **Wrath of the Alloys (name WIP?)**
   - Fire 7(?) balls of energy that burn the ground for 5 seconds
     - Has intense knockback
-  - Taken from the Secret Alloy Boss (the one you have to fight to unlock Loader)
-  - Has a known bug with Multiplayer (documented below in the "Known Bugs" section)
-    - Also needs further tweaking to justify the knockback penalty.
-
+  - **Has a known bug with Multiplayer (documented below in the "Known Bugs" section)**
 <br>
 
 ### Drone Skills
 #### Primary Variants:
-- STOCK: Standard S.A. Gun
+- **STOCK: Standard S.A. Gun**
   - 4-shot burst. Rather weak on its own.
-- UPGRADE: Overclocked Gun
+- **UPGRADE: Overclocked Strike-Gun**
   - Just a beefed-up version of the base skill
      - A tad overpowered by the time you get to area 3/4
   - Taken from the Backup/Strike Drone
-- EXPERIMENTAL: Homing Missile Barrage
-  - Should be a good weapon, but it actually has a fatal flaw:
-    - Rockets will ALWAYS home in on the nearest target
-  - I may replace this with the Paladin's rocket in the future
-    - Make it more like a rocket launcher instead of a Lazy-EZ-Gun
+- **UPGRADE: CR0CK37 Launcher**
+  - Fire a large rocket
+    - Also includes Splash Damage
+  - Taken from the Unused Paladin character
+    - Tweaked *heavily* to best fit the Drone
+- **EXPERIMENTAL: Homing Missile Barrage**
+  - Fire 4 small missiles that home in the nearest enemy
+    - Always homes in on the **closest** enemy relative to your position
+  - **Has a known bug with Multiplayer (documented below in the "Known Bugs" section)**
+
 
 <br>
 
 ### Walker-Turret Skills
+#### **WILL NOT WORK IN MULTIPLAYER**
 #### Primary Variants:
-- Gauss Cannon
+- **TR12 Gauss Cannon**
   - It's just the Engineer's Base Turret's Gun...
-- Gatling Gun (name WIP)
-  - Same as the Gauss Cannon, but taken from the stationary Turrets instead
-  - I plan on tweaking the functionality to make it a bit more interesting and not simply another damn gatling gun
+- **Gatling Gun (name WIP)**
+  - 40 shots with a 2 second cooldown when you run out of ammunition
  
 <br>
 
@@ -142,7 +148,7 @@ Adds in new Skill variations for alternate playstyles.
 <br>
 
 ## Special Thanks
-- Herb - For their Skill Utility Boiler-Plate Code
+- Herb - For their Skill Utility Code
 - The Risk of Rain 2 Modding Discord - For being a huge help and helping me debug this hot mess
 
 <br>
