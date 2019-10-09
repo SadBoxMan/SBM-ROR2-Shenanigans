@@ -134,7 +134,7 @@ Adds in new Skill variations for alternate playstyles.
 - [ ] Add new icons for all new skills
   - [x] Find someone who knows how to draw
 - [ ] Add in Display Prefabs for each new survivor
-  - [ ] Add Skin functionality
+- [ ] Add Skin functionality
 
 <br>
 
