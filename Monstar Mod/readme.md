@@ -139,11 +139,18 @@ Adds in new Skill variations for alternate playstyles.
 <br>
 
 ## Known Bugs
-- Various Multiplayer Bugs
+- Many Skills aren't animated properly and may look a bit goofy
+- Imp's "Providence's Rapture" skill is technically a glitch all on its own
+
+<br>
+
+### Various Multiplayer Bugs
   - Vulture's "Wrath of the Alloys" only has knockback for the Host
   - Walker Turret only works for the Host
   - Icons do not show up in-game for other players
   - Drone's "Missile Barrage" has a mild graphical glitch
+  - Imp's "Passive Skills" do not work for anyone online
+
   
 <br>
 
