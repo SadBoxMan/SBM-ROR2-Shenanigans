@@ -7,13 +7,6 @@ This is a mod for Risk of Rain 2 that adds in a select few monsters and robots a
 
 <br>
 
-## Installation
-1. Place  MonstarMod.dll into its own folder inside of BEPINEX's "plugins" folder
-2. Place the "assets" folder inside of the same folder that MonstarMod.dll is in
-3. Enjoy!
-
-<br>
-
 ## Features
 Includes ~~7~~ 6 new survivors:
   - The Lemurian
@@ -37,7 +30,7 @@ Adds in new Skill variations for alternate playstyles.
 #### Secondary Variants:
 - Elder's Whisper
   - Breathe fire and inflict burn on enemies
-  - Also taken from the EL
+  - Also taken from the Elder Lumerian
   - Was originally a Primary SKill variant, but this led to situations where the Lemurian can't hit anything
     - *cough cough Vagrant*
 - Soldier Tackle (name WIP)
@@ -61,8 +54,7 @@ Adds in new Skill variations for alternate playstyles.
   - Teleports the player to a fixed location on the map, usually very high in the sky
   - Taken from the Imp Boss 
   - It is actually broken, but at the same time it adds a bit of strategy to the Imp's Playstyle
-    - ~~Teleport to a safe, fixed location at the expense of possible fall damage due to the height of the location.~~
-    - No fall damage in Single Player
+    - Teleport to a safe, fixed location at the expense of possible fall damage due to the height of the location.
 
 
 <br>
@@ -107,10 +99,6 @@ Adds in new Skill variations for alternate playstyles.
   - Just a beefed-up version of the base skill
      - A tad overpowered by the time you get to area 3/4
   - Taken from the Backup/Strike Drone
-- UPGRADE: Rocket Launcher
-  - Fire a big ol' rocket (splash damage included)
-  - Taken from the unused Paladin character
-    - Tweaked a great deal since the base stats cause... problems
 - EXPERIMENTAL: Homing Missile Barrage
   - Should be a good weapon, but it actually has a fatal flaw:
     - Rockets will ALWAYS home in on the nearest target
@@ -145,13 +133,11 @@ Adds in new Skill variations for alternate playstyles.
 <br>
 
 ## Known Bugs
-- Multiplayer Bugs:
+- Various Multiplayer Bugs
   - Vulture's "Wrath of the Alloys" only has knockback for the Host
   - Walker Turret only works for the Host
   - Icons do not show up in-game for other players
   - Drone's "Missile Barrage" has a mild graphical glitch
-  - Templar's Clay Bowl locks other players in place during activation
-  - Imp takes fall damage and cannot sprint in all directions
   
 <br>
 
