@@ -3,7 +3,7 @@
 ## Overview
 This is a mod for Risk of Rain 2 that adds in a select few monsters and robots and gives each new skills for a new and challenging experience.
 
-> *For people who have some experience with Risk of Rain 2 and want something fun and challenging in between updates.*
+*For people who have some experience with Risk of Rain 2 and want something fun and challenging in between updates.*
 
 <br>
 
@@ -139,6 +139,7 @@ Adds in new Skill variations for alternate playstyles.
 <br>
 
 ## Known Bugs
+- Skill Variants won't even show up if you don't have at least 1 variant unlocked already for the base survivors
 - Many Skills aren't animated properly and may look a bit goofy
 - Imp's "Providence's Rapture" skill is technically a glitch all on its own
 
