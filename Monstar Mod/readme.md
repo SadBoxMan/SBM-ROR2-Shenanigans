@@ -7,6 +7,13 @@ This is a mod for Risk of Rain 2 that adds in a select few monsters and robots a
 
 <br>
 
+## Installation
+1. Place  MonstarMod.dll into its own folder inside of BEPINEX's "plugins" folder
+2. Place the "assets" folder inside of the same folder that MonstarMod.dll is in
+3. Enjoy!
+
+<br>
+
 ## Features
 Includes ~~7~~ 6 new survivors:
   - The Lemurian
@@ -99,6 +106,10 @@ Adds in new Skill variations for alternate playstyles.
   - Just a beefed-up version of the base skill
      - A tad overpowered by the time you get to area 3/4
   - Taken from the Backup/Strike Drone
+- UPGRADE: Rocket Launcher
+  - Fire a big ol' rocket (splash damage included)
+  - Taken from the unused Paladin character
+    - Tweaked a great deal since the base stats cause... problems
 - EXPERIMENTAL: Homing Missile Barrage
   - Should be a good weapon, but it actually has a fatal flaw:
     - Rockets will ALWAYS home in on the nearest target
