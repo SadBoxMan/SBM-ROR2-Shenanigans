@@ -40,9 +40,9 @@ namespace MonstarMod
             //This is declaring a custom icon from an imported asset bundle
             _MonstarIconBundle = AssetBundle.LoadFromFile(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/assets/monstaricons");
             //_prefab = _MonstarIconBundle.LoadAsset<GameObject>("Assets/Import/belt/belt.prefab");
-            Sprite LemurianBite_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/Lemur_Bite.png");
+            Sprite LemurianBite_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_lumerian_bite_icon.png");
             Sprite LemurianFireball_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/ror2_lumerian_fire_icon.jpg");
-            Sprite GunnerDrone_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/GunnerDrone_Schut.png");
+            Sprite GunnerDrone_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_Drone_Standard_Fire.png");
             Sprite WalkerTurret_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/Walker.png");
             Sprite StrikeDrone_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/StrikeDrone_MG.png");
 
@@ -280,7 +280,7 @@ namespace MonstarMod
             lemur_melee2.skillNameToken = "Soldier Tackle";
             lemur_melee2.skillDescriptionToken = "A charging tackle that <style=cIsDamage>stuns foes, knocking them back</style> and dealing <style=cIsDamage>250% damage</style>.";
             lemur_melee2.interruptPriority = InterruptPriority.Skill;
-            lemur_melee2.baseRechargeInterval = 1f;
+            lemur_melee2.baseRechargeInterval = 7f;
             lemur_melee2.baseMaxStock = 1;
             lemur_melee2.rechargeStock = 1;
             lemur_melee2.isBullets = false;
@@ -324,14 +324,20 @@ namespace MonstarMod
             Imp_slot1.icon = HuntressP_Icon;
             Imp_slot3.icon = HuntressU_Icon;
 
+            //Imp Extras
+            Imp_pod.bodyFlags = CharacterBody.BodyFlags.IgnoreFallDamage;
+            Imp_pod.bodyFlags = CharacterBody.BodyFlags.SprintAnyDirection;
             
+
+
+
             //Imp Utility 1
             SkillDef Imp_Float = ScriptableObject.CreateInstance<SkillDef>();
             Imp_Float.activationState = new SerializableEntityStateType("EntityStates.Commando.CommandoWeapon.CastSmokescreenNoDelay");
             Imp_Float.activationStateMachineName = "Weapon";
             Imp_Float.icon = mageP_Icon;
-            Imp_Float.skillName = "Dead_Ringer";
-            Imp_Float.skillNameToken = "Last Surprise";
+            Imp_Float.skillName = "LAST_SURPRISE";
+            Imp_Float.skillNameToken = "Shadow Sneak";
             Imp_Float.skillDescriptionToken = "Go invisible, stun enemies when you come out of it.";
             Imp_Float.interruptPriority = InterruptPriority.PrioritySkill;
             Imp_Float.baseRechargeInterval = 3f;
@@ -365,8 +371,8 @@ namespace MonstarMod
             Imp_Escape.activationStateMachineName = "Body";
             Imp_Escape.icon = mageP_Icon;
             Imp_Escape.skillName = "BEAM_ME_UP";
-            Imp_Escape.skillNameToken = "Providence's Escape";
-            Imp_Escape.skillDescriptionToken = "Brings you far away from danger... <style=cIsHealth><b>but watch out for fall damage</b></style>.";
+            Imp_Escape.skillNameToken = "Providence's Rapture";
+            Imp_Escape.skillDescriptionToken = "Brings you far away from danger...";
             Imp_Escape.interruptPriority = InterruptPriority.PrioritySkill;
             Imp_Escape.baseRechargeInterval = 30f;
             Imp_Escape.baseMaxStock = 1;
@@ -391,7 +397,7 @@ namespace MonstarMod
             System.Array.Resize<SkillFamily.Variant>(ref Imp_uFam.variants, I3prevLength + 1);
             Imp_uFam.variants[I3prevLength] = imp_U2variant;
 
-
+            
 
             //Clay Templar Skills
             GameObject ClayBruiserbodyfab = BodyCatalog.FindBodyPrefab("ClayBruiserBody");
@@ -406,7 +412,7 @@ namespace MonstarMod
             //clayB_pod.preferredPodPrefab = box;
             ClayBruiser_slot1.skillNameToken = "Sandstorm";
             ClayBruiser_slot1.skillDescriptionToken = "Continously shoot Tar at enemies for <style=cIsDamage>30% damage.</style>";
-            ClayBruiser_slot2.skillNameToken = "Roar of the Sands";
+            ClayBruiser_slot2.skillNameToken = "Roar of Earth";
             ClayBruiser_slot2.skillDescriptionToken = "Spray a burst of Tar that covers enemies, slowing down their movements and knocking them back a fair distance.";
             ClayBruiser_slot2.icon = TreebotU_Icon;
 
@@ -418,7 +424,7 @@ namespace MonstarMod
             Clay_gun2.icon = mageP_Icon;
             Clay_gun2.skillName = "Pot_Toss";
             Clay_gun2.skillNameToken = "Terrastorm";
-            Clay_gun2.skillDescriptionToken = "<style=cIsDamage>(Hold the button down to charge)</style> Launch a barrage of Jars filled with Tar that deal <style=cIsDamage>(5-11)x100% damage</style> each.";
+            Clay_gun2.skillDescriptionToken = "Launch a barrage of Jars filled with Tar that deal <style=cIsDamage>(5-11)x100% damage</style> each. Fires <style=cIsDamage>5</style> jars when pressed once.";
             Clay_gun2.interruptPriority = InterruptPriority.Skill;
             Clay_gun2.baseRechargeInterval = 3f;
             Clay_gun2.baseMaxStock = 1;
@@ -449,7 +455,7 @@ namespace MonstarMod
             Clay_melee2.activationState = new SerializableEntityStateType("EntityStates.Paladin.DashSlam");
             Clay_melee2.activationStateMachineName = "Weapon";
             Clay_melee2.icon = mageP_Icon;
-            Clay_melee2.skillName = "LemurTackle";
+            Clay_melee2.skillName = "ClayTackle";
             Clay_melee2.skillNameToken = "Soldier Tackle";
             Clay_melee2.skillDescriptionToken = "A charging tackle that <style=cIsDamage>stuns foes, knocking them back</style> and dealing <style=cIsDamage>250% damage</style>.";
             Clay_melee2.interruptPriority = InterruptPriority.Skill;
@@ -515,6 +521,8 @@ namespace MonstarMod
             GameObject birb_body = BodyCatalog.FindBodyPrefab("VultureBody");
             SkillLocator birb_SL = birb_body.GetComponent<SkillLocator>();
             CharacterBody birb_pod = birb_body.GetComponent<CharacterBody>();
+
+
             birb_pod.preferredPodPrefab = box;
             birb_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/TreebotCrosshair");
             GenericSkill birb_feather = birb_SL.primary;
@@ -528,6 +536,8 @@ namespace MonstarMod
             vultureFlight.skillNameToken = "Flight";
             vultureFlight.skillDescriptionToken = "Transition from standing to Flying. Rise and fall by using the Camera and forward/backward.";
             vultureFeather.icon = MercS_Icon;
+
+            
 
             SkillDef Vulture_P2 = ScriptableObject.CreateInstance<SkillDef>();
             Vulture_P2.activationState = new SerializableEntityStateType("EntityStates.RoboBallBoss.Weapon.ChargeSuperEyeblast");
@@ -564,6 +574,7 @@ namespace MonstarMod
 
             //GSM Drone Skills
             GameObject Drone1bodyfab = BodyCatalog.FindBodyPrefab("Drone1Body");
+            //Base Crosshair is fine
             //Drone1bodyfab.GetComponent<CharacterBody>().crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/tiltedbracketcrosshair");
             SkillLocator Drone1_SL = Drone1bodyfab.GetComponent<SkillLocator>();
             GenericSkill Drone1_primary = Drone1_SL.primary;
@@ -576,6 +587,11 @@ namespace MonstarMod
             Drone1_slot1.skillDescriptionToken = "Fire a volley of 4 rounds that deals <style=cIsDamage>4x50% damage</style>.";
             Drone1_slot1.icon = GunnerDrone_Icon;
 
+
+            //Attempt at enabling Equipment Slot
+            //EquipmentSlot Drone1_item_module = Drone1bodyfab.GetComponent<EquipmentSlot>();
+            //SkillLocator.PassiveSkill Nanomachines = new SkillLocator.PassiveSkill();
+            //Nanomachines.enabled = true;
 
             //Gunner Drone Variant 1
             SkillDef GunnerDrone_Gun2 = ScriptableObject.CreateInstance<SkillDef>();
@@ -609,17 +625,24 @@ namespace MonstarMod
             System.Array.Resize<SkillFamily.Variant>(ref Drone1_pFam.variants, GD2prevLength + 1);
             Drone1_pFam.variants[GD2prevLength] = GD_variant1;
 
+            //Gunner Skin Attempt
+            //SkinDef DroneChassis = ScriptableObject.CreateInstance<SkinDef>();
+            //DroneChassis.nameToken = "Test";
+            //ModelSkinController Chase = DroneChassis.
+
+
+
 
             //Gunner Drone Variant 2
             SkillDef GunnerDrone_Gun3 = ScriptableObject.CreateInstance<SkillDef>();
-            GunnerDrone_Gun3.activationState = new SerializableEntityStateType("EntityStates.Drone.DroneWeapon.FireMissileBarrage");
+            GunnerDrone_Gun3.activationState = new SerializableEntityStateType("EntityStates.Paladin.PaladinWeapon.FireRocket");
             GunnerDrone_Gun3.activationStateMachineName = "Weapon";
             GunnerDrone_Gun3.icon = mageP_Icon;
             GunnerDrone_Gun3.skillName = "DRONE_MISSILE";
-            GunnerDrone_Gun3.skillNameToken = "EXPERIMENTAL: Ballistic Missile Barrage";
-            GunnerDrone_Gun3.skillDescriptionToken = "Launch a barrage of 4 missiles that deals <style=cIsDamage>4x90% damage</style>. <style=cIsHealth>Homes in on the <u>closest</u> enemy</style>";
+            GunnerDrone_Gun3.skillNameToken = "UPGRADE: Rocket Launcher";
+            GunnerDrone_Gun3.skillDescriptionToken = "Fire a rocket for <style=cIsDamage>220% damage</style>";
             GunnerDrone_Gun3.interruptPriority = InterruptPriority.Skill;
-            GunnerDrone_Gun3.baseRechargeInterval = 1.5f;
+            GunnerDrone_Gun3.baseRechargeInterval = 0.6f;
             GunnerDrone_Gun3.baseMaxStock = 1;
             GunnerDrone_Gun3.rechargeStock = 1;
             GunnerDrone_Gun3.isBullets = false;
@@ -643,6 +666,39 @@ namespace MonstarMod
             Drone1_pFam.variants[GD3prevLength] = GD_variant2;
 
 
+            //Gunner Drone Variant 3
+            SkillDef GunnerDrone_Gun4 = ScriptableObject.CreateInstance<SkillDef>();
+            GunnerDrone_Gun4.activationState = new SerializableEntityStateType("EntityStates.Drone.DroneWeapon.FireMissileBarrage");
+            GunnerDrone_Gun4.activationStateMachineName = "Weapon";
+            GunnerDrone_Gun4.icon = mageP_Icon;
+            GunnerDrone_Gun4.skillName = "DRONE_MISSILE_BARRAGE";
+            GunnerDrone_Gun4.skillNameToken = "EXPERIMENTAL: Ballistic Missile Barrage";
+            GunnerDrone_Gun4.skillDescriptionToken = "Launch a barrage of 4 missiles that deals <style=cIsDamage>4x90% damage</style>. <style=cIsHealth>Homes in on the <u>closest</u> enemy</style>";
+            GunnerDrone_Gun4.interruptPriority = InterruptPriority.Skill;
+            GunnerDrone_Gun4.baseRechargeInterval = 1.5f;
+            GunnerDrone_Gun4.baseMaxStock = 1;
+            GunnerDrone_Gun4.rechargeStock = 1;
+            GunnerDrone_Gun4.isBullets = false;
+            GunnerDrone_Gun4.shootDelay = 0.5f;
+            GunnerDrone_Gun4.beginSkillCooldownOnSkillEnd = false;
+            GunnerDrone_Gun4.requiredStock = 1;
+            GunnerDrone_Gun4.stockToConsume = 1;
+            GunnerDrone_Gun4.isCombatSkill = true;
+            GunnerDrone_Gun4.noSprint = true;
+            GunnerDrone_Gun4.canceledFromSprinting = false;
+            GunnerDrone_Gun4.mustKeyPress = false;
+            GunnerDrone_Gun4.fullRestockOnAssign = true;
+            GunnerDrone_Gun4.skillIndex = 117;
+
+            SkillFamily.Variant GD_variant3 = new SkillFamily.Variant();
+            GD_variant3.skillDef = GunnerDrone_Gun4;
+            GD_variant3.unlockableName = "GD_P4";
+
+            int GD4prevLength = Drone1_pFam.variants.Length;
+            System.Array.Resize<SkillFamily.Variant>(ref Drone1_pFam.variants, GD4prevLength + 1);
+            Drone1_pFam.variants[GD4prevLength] = GD_variant3;
+
+
 
             //Walker Turret Skills
             GameObject EngiWalkerTurretbodyfab = BodyCatalog.FindBodyPrefab("EngiWalkerTurretBody");
@@ -664,7 +720,7 @@ namespace MonstarMod
             Walker_Beam3.activationStateMachineName = "Weapon";
             Walker_Beam3.icon = EngiSP_Icon;
             Walker_Beam3.skillName = "Walker_Beam_3";
-            Walker_Beam3.skillNameToken = "Gauss Cannon";
+            Walker_Beam3.skillNameToken = "TR12 Gauss Cannon";
             Walker_Beam3.skillDescriptionToken = "Fire a Gauss Cannon for <style=cIsDamage>up to 70% damage</style>.";
             Walker_Beam3.interruptPriority = InterruptPriority.Any;
             Walker_Beam3.baseRechargeInterval = 0f;
@@ -700,7 +756,7 @@ namespace MonstarMod
             Walker_Beam2.skillNameToken = "Jury-Rigged Gatling Gun";
             Walker_Beam2.skillDescriptionToken = "Fire a gatling-gun that deals <style=cIsDamage>40x30% damage</style>.";
             Walker_Beam2.interruptPriority = InterruptPriority.Any;
-            Walker_Beam2.baseRechargeInterval = 1.5f;
+            Walker_Beam2.baseRechargeInterval = 2f;
             Walker_Beam2.baseMaxStock = 42;
             Walker_Beam2.rechargeStock = 3;
             Walker_Beam2.isBullets = true;
@@ -860,7 +916,7 @@ namespace MonstarMod
                 var Engi_Walker = new SurvivorDef
                 {
                     bodyPrefab = BodyCatalog.FindBodyPrefab("EngiWalkerTurretBody"),
-                    descriptionToken = "<i>No way in Hell am I going down there! I'll send in one of my new Walker Turrets instead!</i>\n~~Engineer when asked by Loader to do some scavenging on the surface of the planet.\n\n<style=cSub>< i > Unfortunately, the Engineer forgot to program his Walker to use equipment... <style=cIsHealth>(cannot use Equipment)</style>.\n\n< i > Can easily walk up steep slopes\n\n< i >The TR58 Carbonizer Beam has a very limited range but can be fired continuously.\n\n< i >The Alloy Beam has an astronomical range, but at the cost of damage output.</style>",
+                    descriptionToken = "<i>No way in Hell am I going down there! I'll send in one of my new Walker Turrets instead!</i>\n~The Engineer when asked by Loader to do some scavenging on the surface of the planet.\n\n<style=cSub>< i > Unfortunately, the Engineer forgot to program his Walker to use equipment... <style=cIsHealth>(cannot use Equipment)</style>.\n\n< i > Can easily walk up steep slopes\n\n< i >The TR58 Carbonizer Beam has a very limited range but can be fired continuously.\n\n< i ><style=cIsHealth><u>WILL NOT WORK IN MULTIPLAYER!!!</u></style></style>",
                     displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/EngiWalkerTurretBody"),
                     primaryColor = new Color(0.8039216f, 0.482352942f, 0.843137264f),
                     unlockableName = "EngiWalker",
