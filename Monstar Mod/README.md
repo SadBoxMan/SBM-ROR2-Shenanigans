@@ -156,7 +156,7 @@ Adds in new Skill variations for alternate playstyles.
 <br>
 
 ## Special Thanks
-- Herb - For their Skill Utility Code
+- Rein - For their Skill Utility Code
 - The Risk of Rain 2 Modding Discord - For being a huge help and helping me debug this hot mess
 
 <br>
