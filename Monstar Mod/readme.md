@@ -165,3 +165,12 @@ Adds in new Skill variations for alternate playstyles.
 - BepinEX
 - R2API
 - ROR 
+
+<br>
+
+# Installation
+###  With BepInEx
+ 1. Extract "Monstar Mod.dll" from the zip file and place it into  "/Risk of Rain 2/BepInEx/plugins/Monstar Mod/" folder.
+ 2. Extract the "Assets" Folder and place in the same folder as "Monstar Mod.dll"
+ 3. If everything is done correctly, the Monstar Mod folder will have "Monstar Mod.dll" and a folder called "Assets"
+ 4. Enjoy!
