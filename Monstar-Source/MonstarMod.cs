@@ -20,7 +20,7 @@ namespace MonstarMod
 {
 
     [BepInDependency("com.bepis.r2api")]
-    [BepInPlugin("SadBoxMan.Monstar", "Monstar Mode", "1.0")]
+    [BepInPlugin("SadBoxMan.Monstar", "Monstar Mod(e)", "1.0.0")]
 
     public class Monstar : BaseUnityPlugin
     {
@@ -491,7 +491,7 @@ namespace MonstarMod
             Clay_gun2.icon = ClayJarToss_Icon;
             Clay_gun2.skillName = "Pot_Toss";
             Clay_gun2.skillNameToken = "Terravolley";
-            Clay_gun2.skillDescriptionToken = "Launch a barrage of Jars filled with Tar that deal <style=cIsDamage>(5-11)x100% damage</style> each. Fires <style=cIsDamage>5</style> jars when pressed once.";
+            Clay_gun2.skillDescriptionToken = "Launch a barrage of Jars filled with Tar that deal <style=cIsDamage>(5-11)x100% damage</style> each. Fires <style=cIsDamage>five</style> jars when pressed once.";
             Clay_gun2.interruptPriority = InterruptPriority.Skill;
             Clay_gun2.baseRechargeInterval = 2.34f;
             Clay_gun2.baseMaxStock = 1;
@@ -515,6 +515,38 @@ namespace MonstarMod
             int CP2prevLength = ClayBruiser_pFam.variants.Length;
             System.Array.Resize<SkillFamily.Variant>(ref ClayBruiser_pFam.variants, CP2prevLength + 1);
             ClayBruiser_pFam.variants[CP2prevLength] = clay_P2variant;
+
+            //Tar Bowling
+            SkillDef Clay_melee3 = ScriptableObject.CreateInstance<SkillDef>();
+            Clay_melee3.activationState = new SerializableEntityStateType("EntityStates.ClayBoss.FireTarball");
+            Clay_melee3.activationStateMachineName = "Weapon";
+            Clay_melee3.icon = ClayBowl_Icon;
+            Clay_melee3.skillName = "Tar_Bowl";
+            Clay_melee3.skillNameToken = "Clay Bowl";
+            Clay_melee3.skillDescriptionToken = "Fire off <style=cIsDamage>three</style> large balls of Tar along the terrain that home in on targets for <style=cIsDamage>100% damage</style> each. Covers enemies in Tar, which <color=#95cde5>slows down movement and attack speed</color>";
+            Clay_melee3.interruptPriority = InterruptPriority.Skill;
+            Clay_melee3.baseRechargeInterval = 5f;
+            Clay_melee3.baseMaxStock = 1;
+            Clay_melee3.rechargeStock = 1;
+            Clay_melee3.isBullets = false;
+            Clay_melee3.shootDelay = 0.3f;
+            Clay_melee3.beginSkillCooldownOnSkillEnd = false;
+            Clay_melee3.requiredStock = 1;
+            Clay_melee3.stockToConsume = 1;
+            Clay_melee3.isCombatSkill = true;
+            Clay_melee3.noSprint = false;
+            Clay_melee3.canceledFromSprinting = false;
+            Clay_melee3.mustKeyPress = false;
+            Clay_melee3.fullRestockOnAssign = true;
+            Clay_melee3.skillIndex = 32;
+
+            SkillFamily.Variant clay_S3variant = new SkillFamily.Variant();
+            clay_S3variant.skillDef = Clay_melee3;
+            clay_S3variant.unlockableName = "CLAY_B3";
+
+            int C3prevLength = ClayBruiser_sFam.variants.Length;
+            System.Array.Resize<SkillFamily.Variant>(ref ClayBruiser_sFam.variants, C3prevLength + 1);
+            ClayBruiser_sFam.variants[C3prevLength] = clay_S3variant;
 
 
             //Gun Bash
@@ -548,39 +580,6 @@ namespace MonstarMod
             int C2prevLength = ClayBruiser_sFam.variants.Length;
             System.Array.Resize<SkillFamily.Variant>(ref ClayBruiser_sFam.variants, C2prevLength + 1);
             ClayBruiser_sFam.variants[C2prevLength] = clay_Svariant;
-
-
-            //Tar Bowling
-            SkillDef Clay_melee3 = ScriptableObject.CreateInstance<SkillDef>();
-            Clay_melee3.activationState = new SerializableEntityStateType("EntityStates.ClayBoss.FireTarball");
-            Clay_melee3.activationStateMachineName = "Weapon";
-            Clay_melee3.icon = ClayBowl_Icon;
-            Clay_melee3.skillName = "Tar_Bowl";
-            Clay_melee3.skillNameToken = "Clay Bowl";
-            Clay_melee3.skillDescriptionToken = "Fire off 3 large balls of Tar along the terrain that home in on targets for <style=cIsDamage>100% damage</style> each. Covers enemies in Tar, which <color=#95cde5>slows down movement and attack speed</color>";
-            Clay_melee3.interruptPriority = InterruptPriority.Skill;
-            Clay_melee3.baseRechargeInterval = 5f;
-            Clay_melee3.baseMaxStock = 1;
-            Clay_melee3.rechargeStock = 1;
-            Clay_melee3.isBullets = false;
-            Clay_melee3.shootDelay = 0.3f;
-            Clay_melee3.beginSkillCooldownOnSkillEnd = false;
-            Clay_melee3.requiredStock = 1;
-            Clay_melee3.stockToConsume = 1;
-            Clay_melee3.isCombatSkill = true;
-            Clay_melee3.noSprint = false;
-            Clay_melee3.canceledFromSprinting = false;
-            Clay_melee3.mustKeyPress = false;
-            Clay_melee3.fullRestockOnAssign = true;
-            Clay_melee3.skillIndex = 32;
-
-            SkillFamily.Variant clay_S3variant = new SkillFamily.Variant();
-            clay_S3variant.skillDef = Clay_melee3;
-            clay_S3variant.unlockableName = "CLAY_B3";
-
-            int C3prevLength = ClayBruiser_sFam.variants.Length;
-            System.Array.Resize<SkillFamily.Variant>(ref ClayBruiser_sFam.variants, C3prevLength + 1);
-            ClayBruiser_sFam.variants[C3prevLength] = clay_S3variant;
 
 
 
@@ -945,11 +944,11 @@ namespace MonstarMod
             
             For some extra fun, enable this block of code. It turns all Lemurians into absolute units
             
-            int bodyIndex = BodyCatalog.FindBodyIndex("BackupDroneBody");
+            int bodyIndex = BodyCatalog.FindBodyIndex("LemurianBody");
             SkillLocator skillLocator = BodyCatalog.GetBodyPrefab(bodyIndex).GetComponent<SkillLocator>();
             SkillFamily skillFamily = skillLocator.primary.skillFamily;
             SkillDef defaultSkill = skillFamily.variants[skillFamily.defaultVariantIndex].skillDef;
-            defaultSkill.activationState = new SerializableEntityStateType("EntityStates.Engi.EngiWeapon.FireMines");
+            defaultSkill.activationState = new SerializableEntityStateType("EntityStates.LemurianBruiserMonster.ChargeMegaFireball");
             object box2 = defaultSkill.activationState;
             defaultSkill.activationState = (SerializableEntityStateType)box2;
             */
