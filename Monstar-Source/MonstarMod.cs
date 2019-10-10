@@ -20,7 +20,7 @@ namespace MonstarMod
 {
 
     [BepInDependency("com.bepis.r2api")]
-    [BepInPlugin("SadBoxMan.Monstar", "Monstar Mod(e)", "1.0.0")]
+    [BepInPlugin("SadBoxMan.Monstar", "Monstar Mod", "1.0.0")]
 
     public class Monstar : BaseUnityPlugin
     {
@@ -34,7 +34,7 @@ namespace MonstarMod
             //GameObject _prefab;
 
             //Priming the Asset Bundle for imports
-            _MonstarIconBundle = AssetBundle.LoadFromFile(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/assets/monstaricons");
+            _MonstarIconBundle = AssetBundle.LoadFromFile(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/monstaricons");
 
             //Prefab Load Example
             //_prefab = _MonstarIconBundle.LoadAsset<GameObject>("Assets/Import/belt/belt.prefab");
