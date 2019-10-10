@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1253273372
+CRC: 1870375804
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: cfe3fe2468233a9363c80ba5be049eef
+    Hash: a8b4e2b0d369d47a91b0ca276453c7ed
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -14,12 +14,24 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
+- Assets/Import/icons/RoR2_WarioBash_Lemurian_placeholder.png
+- Assets/Import/icons/RoR2_Drone_placeholder.png
 - Assets/Import/icons/Walker.png
-- Assets/Import/icons/Lemur_Fireball.png
+- Assets/Import/icons/_BETA_Lemur_Fireball.png
+- Assets/Import/icons/RoR2_Vulture_placeholder.png
+- Assets/Import/icons/RoR2_Drone_Standard_Fire.png
+- Assets/Import/icons/ror2_lumerian_fire_icon.jpg
 - Assets/Import/icons/cheeki.png
-- Assets/Import/icons/StrikeDrone_MG.png
-- Assets/Import/icons/Lemur_Bite.png
+- Assets/Import/icons/BETA_StrikeDrone_MG.png
+- Assets/Import/icons/BETA_Lemur_Bite.png
+- Assets/Import/icons/ror2_lumerian_placeholder.jpg
+- Assets/Import/icons/RoR2_WarioBash_Clay_placeholder.png
 - Assets/Import/icons/kirb.png
-- Assets/Import/icons/GunnerDrone_Schut.png
+- Assets/Import/icons/RoR2_Imp_placeholder.png
+- Assets/Import/icons/RoR2_lumerian_bite_icon.png
+- Assets/Import/icons/RoR2_Drone_Missile_Barrage.png
+- Assets/Import/icons/RoR2_Clay_placeholder.png
+- Assets/Import/icons/BETA_GunnerDrone_Schut.png
+- Assets/Import/icons/RoR2_Walker_Turret_placeholder.png
 - Assets/Import/icons/conga.gif
 Dependencies: []
