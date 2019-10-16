@@ -15,12 +15,13 @@ using KinematicCharacterController;
 using System.Linq;
 using EntityStates;
 using R2API;
+using SurvivorUtils;
 
 namespace MonstarMod
 {
 
     [BepInDependency("com.bepis.r2api")]
-    [BepInPlugin("SadBoxMan.Monstar", "Monstar Mod", "1.0.0")]
+    [BepInPlugin("SadBoxMan.Monstar", "Monstar Mod", "1.1.0")]
 
     public class Monstar : BaseUnityPlugin
     {
@@ -43,8 +44,8 @@ namespace MonstarMod
             //Lemurian Icons
             Sprite LemurianBite_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_lumerian_bite_icon.png");
             Sprite LemurianFireball_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/ror2_lumerian_fire_icon.jpg");
-            Sprite LemurianSuperFireball_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/ror2_lumerian_placeholder.jpg");
-            Sprite LemurianDragonBreath_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/ror2_lumerian_placeholder.jpg");
+            Sprite LemurianSuperFireball_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_Lumerian_Elder's_Authority.png");
+            Sprite LemurianDragonBreath_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_Elder's_Whisper_icon.png");
 
             //Shoulder Bash Icon
             Sprite WarioBash_Lemurian_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_WarioBash_Lemurian_placeholder.png");
@@ -73,7 +74,7 @@ namespace MonstarMod
 
             //Gunner Drone Icons
             Sprite GunnerDrone_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_Drone_Standard_Fire.png");
-            Sprite StrikeDrone_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_Drone_placeholder.png");
+            Sprite StrikeDrone_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_Drone_Minigun_icon.png");
             Sprite RocketDrone_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_Drone_placeholder.png");
             Sprite MissileDrone_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_Drone_Missile_Barrage.png");
 
@@ -194,6 +195,10 @@ namespace MonstarMod
             Sprite MercU_Icon = Merc_uFam.variants[Merc_uFam.defaultVariantIndex].skillDef.icon;
             Sprite MercSP_Icon = Merc_spFam.variants[Merc_spFam.defaultVariantIndex].skillDef.icon;
 
+           
+
+
+
 
 
             //Huntress Setup
@@ -259,6 +264,11 @@ namespace MonstarMod
             lemurianBite.skillDescriptionToken = "Bite Enemies for <style=cIsDamage>200% damage.</style>";
             lemurianBite.icon = LemurianBite_Icon;
 
+            /*
+            SkinDef butt = ScriptableObject.CreateInstance<SkinDef>();
+            butt.icon = LemurianBite_Icon;
+            SkinDef[] barp = BodyCatalog.GetBodySkins(1);
+            */
 
 
             //Lemur Fire Variant 1
@@ -367,8 +377,6 @@ namespace MonstarMod
             CharacterBody Imp_pod = Impbodyfab.GetComponent<CharacterBody>();
             //Imp_pod.preferredPodPrefab = box;
             Imp_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/NULL");
-            Imp_pod.bodyFlags = CharacterBody.BodyFlags.IgnoreFallDamage;
-            Imp_pod.bodyFlags = CharacterBody.BodyFlags.SprintAnyDirection;
 
             SkillLocator Imp_SL = Impbodyfab.GetComponent<SkillLocator>();
             GenericSkill Imp_primary = Imp_SL.primary;
@@ -980,91 +988,82 @@ namespace MonstarMod
 
         public void Awake()
         {
-            SurvivorAPI.SurvivorCatalogReady += delegate (object s, EventArgs e)
+
+            //Lemurian
+            var Lemur_Surv = new SurvivorDef
             {
 
-
-                //Lemurian
-                var Lemur_Surv = new SurvivorDef
-                {
-
-                    bodyPrefab = BodyCatalog.FindBodyPrefab("LemurianBody"),
-                    descriptionToken = "The Lemurian is the very definition of struggle. Weak and fragile, but determined to rise to the top of the food chain. \n\n<style=cSub>< i > Gets <style=cIsHealth>stunned easily</style>. Only engage in hand-to-hand if absolutely necessary or confident!\n\n< i > Due to their bizarre physiology, <style=cIsHealth>they cannot use some healing-based items.</style></color>",
-                    displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/LemurianBody"),
-                    primaryColor = new Color(0.4901960784f, 0.1490196078f, 0.8039215686f),
-                    unlockableName = "Lemur",
-                    survivorIndex = SurvivorIndex.Count + 1
-
-                };
-
-                //Imp
-                var Imp_Surv = new SurvivorDef
-                {
-                    bodyPrefab = BodyCatalog.FindBodyPrefab("ImpBody"),
-                    descriptionToken = "An aspiring peon that seeks to please its Overlord by sacrificing many creatures.\n\n<style=cSub>< i > The Bleed from its 'Rend Flesh' attack stacks, so make sure that both claws hit your opponent for maximum damage output!\n\n< i > Has great mobility due to its natural ability to levitate, meaning it can jump high and sprint in any direction!\n\n< i > 'Providence's Rapture' always brings you to the same fixed point on each map. Learn these points and plan accordingly!</style>",
-                    displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/ImpBody"),
-                    primaryColor = new Color(0.6156862745f, 0.07450980392f, 0.07450980392f),
-                    unlockableName = "Imp",
-                    survivorIndex = SurvivorIndex.Count + 1,
-                };
-
-                //Clay Templar
-                var ClayB_Surv = new SurvivorDef
-                {
-                    bodyPrefab = BodyCatalog.FindBodyPrefab("ClayBruiserBody"),
-                    descriptionToken = "A wandering Clayman. It got seperated from its Dunestrider some time ago. Leaderless and without purpose, it now wanders the planet searching for strong creatures to fight in an effort to validate its solitary existance. \n\n<style=cSub>< i > The Templar's Jar gets more accurate the closer you are to a target.\n\n< i > The Jar has a slow start-up and slows you down while using it.\n\n< i > Due to their bizarre physiology, <style=cIsHealth>they cannot use some healing-based items.</style>\n\n< i > Terravolley's Jars will travel to wherever the <u>center</u> of the crosshair is pointing. Aim true!</color>",
-                    displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/claybruiserbody"),
-                    primaryColor = new Color(0.9568627451f, 0.6431372549f, 0.3764705882f),
-                    unlockableName = "Buff_Tarboy",
-                    survivorIndex = SurvivorIndex.Count + 1
-
-                };
-
-                //Vulture
-                var Birb_Surv = new SurvivorDef
-                {
-                    bodyPrefab = BodyCatalog.FindBodyPrefab("VultureBody"),
-                    descriptionToken = "After having many of its eggs broken by the strange newcomers, one of the Vultures decided to drop its opportunistic lifestyle and hunt down the trespassers. \n\n<style=cSub>< ! > When landing, you will automatically drift towards the nearest solid surface\n\n< i > 'Wrath of the Alloys' randomly transitions from a vertical volley and a horizontal volley. It also has intense knockback due to its power.</color>",
-                    displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/vulturebody"),
-                    primaryColor = new Color(0.06274509804f, 0.5019607843f, 0.4392156863f),
-                    unlockableName = "Carrion Pigeon",
-                    survivorIndex = SurvivorIndex.Count + 1
-                };
-
-                //GSM Drone
-                var Gun_Drone = new SurvivorDef
-                {
-                    bodyPrefab = BodyCatalog.FindBodyPrefab("Drone1Body"),
-                    descriptionToken = "Experimental Drone: G.S.M. Model. \nMulti-Purpose, Custom-Built Drone, combines the functionality of multiple units both civilian and military. NOT FOR RETAIL SALE!\n\n<style=cSub>< i > In order to build this custom unit, some corners had to be cut. <style=cIsHealth>(cannot use Equipment)</style>.\n\n< i > Thus Unit is quick and nimble, but its chassis is somewhat fragile.\n\n< i > The mounted gun deals more damage the closer you are to an enemy, but less damage if you are too far. \n\n< i > The Missile Barrage rockets home in on the closest enemy, which can cause a problem if you are being overwhelmed.</style>",
-                    displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/Drone1Body"),
-                    primaryColor = new Color(0.3176470588f, 0.5647058824f, 0.9294117647f),
-                    unlockableName = "GDrone",
-                    survivorIndex = SurvivorIndex.Count + 1,
-
-                };
-                
-                //Engineer Walker Turret
-                var Engi_Walker = new SurvivorDef
-                {
-                    bodyPrefab = BodyCatalog.FindBodyPrefab("EngiWalkerTurretBody"),
-                    descriptionToken = "<i>No way in Hell am I going down there! I'll send in one of my new Walker Turrets instead!</i>\n~The Engineer when asked by Loader to do some scavenging on the surface of the planet.\n\n<style=cSub>< i > Unfortunately, the Engineer forgot to program his Walker to use equipment... <style=cIsHealth>(cannot use Equipment)</style>.\n\n< i > Can easily walk up steep slopes\n\n< i > The TR58 Carbonizer Beam has a short-range, and isn't affected by attack-speed buffs.\n\n< i ><style=cIsHealth><u> WILL NOT WORK IN MULTIPLAYER!!!</u></style></style>",
-                    displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/EngiWalkerTurretBody"),
-                    primaryColor = new Color(0.3019607843f, 0.7490196078f, 0.4392156863f),
-                    unlockableName = "EngiWalker",
-                    survivorIndex = SurvivorIndex.Count + 1,
-
-                };
-
-
-                SurvivorAPI.SurvivorDefinitions.Insert(4, Engi_Walker);
-                R2API.SurvivorAPI.AddSurvivorOnReady(Gun_Drone);
-                R2API.SurvivorAPI.AddSurvivorOnReady(Lemur_Surv);
-                R2API.SurvivorAPI.AddSurvivorOnReady(Imp_Surv);
-                R2API.SurvivorAPI.AddSurvivorOnReady(ClayB_Surv);
-                R2API.SurvivorAPI.AddSurvivorOnReady(Birb_Surv);
-
+                bodyPrefab = Resources.Load<GameObject>("prefabs/characterbodies/LemurianBody"),
+                descriptionToken = "The Lemurian is the very definition of struggle. Weak and fragile, but determined to rise to the top of the food chain. \n\n<style=cSub>< i > Gets <style=cIsHealth>stunned easily</style>. Only engage in hand-to-hand if absolutely necessary or confident!\n\n< i > Due to their bizarre physiology, <style=cIsHealth>they cannot use some healing-based items.</style></color>",
+                displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/LemurianBody"),
+                primaryColor = new Color(0.4901960784f, 0.1490196078f, 0.8039215686f),
+                unlockableName = "Lemur"
 
             };
+
+            //Imp
+            var Imp_Surv = new SurvivorDef
+            {
+                bodyPrefab = Resources.Load<GameObject>("prefabs/characterbodies/ImpBody"),
+                descriptionToken = "An aspiring peon that seeks to please its Overlord by sacrificing many creatures.\n\n<style=cSub>< i > The Bleed from its 'Rend Flesh' attack stacks, so make sure that both claws hit your opponent for maximum damage output!\n\n< i > Has great mobility due to its natural ability to levitate, meaning it can jump high and sprint in any direction!\n\n< i > 'Providence's Rapture' always brings you to the same fixed point on each map. Learn these points and plan accordingly!</style>",
+                displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/ImpBody"),
+                primaryColor = new Color(0.6156862745f, 0.07450980392f, 0.07450980392f),
+                unlockableName = "Imp"
+            };
+
+            
+
+            //Clay Templar
+            var ClayB_Surv = new SurvivorDef
+            {
+                bodyPrefab = Resources.Load<GameObject>("prefabs/characterbodies/claybruiserbody"),
+                descriptionToken = "A wandering Clayman. It got seperated from its Dunestrider some time ago. Leaderless and without purpose, it now wanders the planet searching for strong creatures to fight in an effort to validate its solitary existance. \n\n<style=cSub>< i > The Templar's Jar gets more accurate the closer you are to a target.\n\n< i > The Jar has a slow start-up and slows you down while using it.\n\n< i > Due to their bizarre physiology, <style=cIsHealth>they cannot use some healing-based items.</style>\n\n< i > Terravolley's Jars will travel to wherever the <u>center</u> of the crosshair is pointing. Aim true!</color>",
+                displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/claybruiserbody"),
+                primaryColor = new Color(0.9568627451f, 0.6431372549f, 0.3764705882f),
+                unlockableName = "Buff_Tarboy"
+
+            };
+
+            //Vulture
+            var Birb_Surv = new SurvivorDef
+            {
+                bodyPrefab = Resources.Load<GameObject>("prefabs/characterbodies/vulturebody"),
+                descriptionToken = "After having many of its eggs broken by the strange newcomers, one of the Vultures decided to drop its opportunistic lifestyle and hunt down the trespassers. \n\n<style=cSub>< ! > When landing, you will automatically drift towards the nearest solid surface\n\n< i > 'Wrath of the Alloys' randomly transitions from a vertical volley and a horizontal volley. It also has intense knockback due to its power.</color>",
+                displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/vulturebody"),
+                primaryColor = new Color(0.06274509804f, 0.5019607843f, 0.4392156863f),
+                unlockableName = "Carrion Pigeon"
+            };
+
+            //GSM Drone
+            var Gun_Drone = new SurvivorDef
+            {
+                bodyPrefab = Resources.Load<GameObject>("prefabs/characterbodies/Drone1Body"),
+                descriptionToken = "Experimental Drone: G.S.M. Model. \nMulti-Purpose, Custom-Built Drone, combines the functionality of multiple units both civilian and military. NOT FOR RETAIL SALE!\n\n<style=cSub>< i > In order to build this custom unit, some corners had to be cut. <style=cIsHealth>(cannot use Equipment)</style>.\n\n< i > Thus Unit is quick and nimble, but its chassis is somewhat fragile.\n\n< i > The mounted gun deals more damage the closer you are to an enemy, but less damage if you are too far. \n\n< i > The Missile Barrage rockets home in on the closest enemy, which can cause a problem if you are being overwhelmed.</style>",
+                displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/Drone1Body"),
+                primaryColor = new Color(0.3176470588f, 0.5647058824f, 0.9294117647f),
+                unlockableName = "GDrone"
+
+            };
+
+            //Engineer Walker Turret
+            SurvivorDef Engi_Walker = new SurvivorDef
+            {
+                bodyPrefab = Resources.Load<GameObject>("prefabs/characterbodies/EngiWalkerTurretBody"),
+                descriptionToken = "<i>No way in Hell am I going down there! I'll send in one of my new Walker Turrets instead!</i>\n~The Engineer when asked by Loader to do some scavenging on the surface of the planet.\n\n<style=cSub>< i > Unfortunately, the Engineer forgot to program his Walker to use equipment... <style=cIsHealth>(cannot use Equipment)</style>.\n\n< i > Can easily walk up steep slopes\n\n< i > The TR58 Carbonizer Beam has a short-range, and isn't affected by attack-speed buffs.\n\n< i ><style=cIsHealth><u> WILL NOT WORK IN MULTIPLAYER!!!</u></style></style>",
+                displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/EngiWalkerTurretBody"),
+                primaryColor = new Color(0.3019607843f, 0.7490196078f, 0.4392156863f),
+                unlockableName = "EngiWalker"
+
+            };
+
+
+
+            R2API.SurvivorAPI.AddSurvivor(Engi_Walker);
+            R2API.SurvivorAPI.AddSurvivor(Gun_Drone);
+            R2API.SurvivorAPI.AddSurvivor(Lemur_Surv);
+            R2API.SurvivorAPI.AddSurvivor(Imp_Surv);
+            R2API.SurvivorAPI.AddSurvivor(ClayB_Surv);
+            R2API.SurvivorAPI.AddSurvivor(Birb_Surv);
 
 
 
