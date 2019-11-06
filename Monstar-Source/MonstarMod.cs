@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System;
 using BepInEx.Configuration;
 using System.Reflection;
+using System.Collections;
 using MonoMod.Cil;
 using KinematicCharacterController;
 using System.Linq;
@@ -21,10 +22,22 @@ namespace MonstarMod
 {
 
     [BepInDependency("com.bepis.r2api")]
-    [BepInPlugin("SadBoxMan.Monstar", "Monstar Mod", "1.1.0")]
+    [BepInPlugin("SadBoxMan.Monstar", "Monstar Mod", "1.3.6")]
+
+
 
     public class Monstar : BaseUnityPlugin
     {
+        
+        //For declaring the prefab
+        //GameObject _prefab;
+
+        //Priming the Asset Bundle for imports
+
+
+                //Prefab Load Example
+                //_prefab = _MonstarIconBundle.LoadAsset<GameObject>("Assets/Import/belt/belt.prefab");
+
 
         public void Start()
         {
@@ -40,7 +53,7 @@ namespace MonstarMod
             //Prefab Load Example
             //_prefab = _MonstarIconBundle.LoadAsset<GameObject>("Assets/Import/belt/belt.prefab");
 
-
+            //AudioClip genericSound = _MonstarIconBundle.LoadAsset<AudioClip>("Assets/Import/sound/generic.mp3");
             //Lemurian Icons
             Sprite LemurianBite_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_lumerian_bite_icon.png");
             Sprite LemurianFireball_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/ror2_lumerian_fire_icon.jpg");
@@ -245,8 +258,17 @@ namespace MonstarMod
             //Lemurian Skills
             GameObject lemur_body = BodyCatalog.FindBodyPrefab("LemurianBody");
 
+            //SkinDef[] l1 = BodyCatalog.GetBodySkins(1);
+            //SerializableLoadout.BodyLoadout l3;
+
+            //SkinDef.MeshReplacement lemur_alt = lemur_body.;
+            //lemur_alt.mesh = "";
+
+
             CharacterBody lemur_pod = lemur_body.GetComponent<CharacterBody>();
             lemur_pod.preferredPodPrefab = box;
+            lemur_pod.baseRegen = 0.4f;
+            lemur_pod.levelRegen = 0.08f;
 
             SkillLocator lemur_SL = lemur_body.GetComponent<SkillLocator>();
             GenericSkill lemur_fireball = lemur_SL.primary;
@@ -371,12 +393,25 @@ namespace MonstarMod
 
 
 
+
+
+
             //Imp Skills
             GameObject Impbodyfab = BodyCatalog.FindBodyPrefab("ImpBody");
 
             CharacterBody Imp_pod = Impbodyfab.GetComponent<CharacterBody>();
             //Imp_pod.preferredPodPrefab = box;
             Imp_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/NULL");
+            Imp_pod.baseJumpCount = 2;
+            //Imp_pod.bodyFlags = CharacterBody.BodyFlags.SprintAnyDirection;
+            Imp_pod.bodyFlags = CharacterBody.BodyFlags.IgnoreFallDamage;
+
+
+
+
+
+
+            //transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
 
             SkillLocator Imp_SL = Impbodyfab.GetComponent<SkillLocator>();
             GenericSkill Imp_primary = Imp_SL.primary;
@@ -387,8 +422,12 @@ namespace MonstarMod
             SkillDef Imp_slot3 = Imp_uFam.variants[Imp_uFam.defaultVariantIndex].skillDef;
 
             Imp_slot1.skillNameToken = "Rend Flesh";
-            Imp_slot1.skillDescriptionToken = "Slash at your foes with each hand, dealing <style=cIsDamage>2x150% damage</style>. The deep lacerations cause creatures to <style=cIsHealth>bleed</style>.";
+            Imp_slot1.skillDescriptionToken = "Slash at your foes with each hand, dealing <style=cIsDamage>2x150% damage</style>. The deep lacerations cause creatures to <color=#95cde5>bleed</color>.";
             Imp_slot1.icon = ImpSwipe_Icon;
+            Imp_slot1.beginSkillCooldownOnSkillEnd = true;
+            Imp_slot1.canceledFromSprinting = false;
+            Imp_slot1.noSprint = false;
+            Imp_slot1.baseRechargeInterval = 0f;
 
             Imp_slot3.skillNameToken = "Dark Warp";
             Imp_slot3.skillDescriptionToken = "<color=#95cde5>Teleport</color> out of danger. <color=#95cde5>Holds 3 charges.</color>";
@@ -396,9 +435,7 @@ namespace MonstarMod
 
 
             //Imp "Passive"
-            Imp_pod.bodyFlags = CharacterBody.BodyFlags.IgnoreFallDamage;
-            Imp_pod.bodyFlags = CharacterBody.BodyFlags.SprintAnyDirection;
-            
+ 
 
             //Imp Utility 1
             SkillDef Imp_Float = ScriptableObject.CreateInstance<SkillDef>();
@@ -407,7 +444,7 @@ namespace MonstarMod
             Imp_Float.icon = ImpCloak_Icon;
             Imp_Float.skillName = "LAST_SURPRISE";
             Imp_Float.skillNameToken = "Shadow Sneak";
-            Imp_Float.skillDescriptionToken = "<color=#95cde5>Go invisible</color>, <color=#95cde5>stunning enemies</color> in close proximity upon activation and cancellation.";
+            Imp_Float.skillDescriptionToken = "<color=#95cde5>Go invisible</color>, <color=#95cde5>stunning creatures</color> in close proximity. Deals <style=cIsDamage>220% damage</style>.";
             Imp_Float.interruptPriority = InterruptPriority.PrioritySkill;
             Imp_Float.baseRechargeInterval = 3f;
             Imp_Float.baseMaxStock = 1;
@@ -443,12 +480,12 @@ namespace MonstarMod
             Imp_Escape.skillNameToken = "Providence's Rapture";
             Imp_Escape.skillDescriptionToken = "<style=cIsHealing>Brings you far away from danger...</style>";
             Imp_Escape.interruptPriority = InterruptPriority.PrioritySkill;
-            Imp_Escape.baseRechargeInterval = 30f;
+            Imp_Escape.baseRechargeInterval = 45f;
             Imp_Escape.baseMaxStock = 1;
             Imp_Escape.rechargeStock = 1;
-            Imp_Escape.isBullets = true;
+            Imp_Escape.isBullets = false;
             Imp_Escape.shootDelay = 1f;
-            Imp_Escape.beginSkillCooldownOnSkillEnd = true;
+            Imp_Escape.beginSkillCooldownOnSkillEnd = false;
             Imp_Escape.requiredStock = 1;
             Imp_Escape.stockToConsume = 1;
             Imp_Escape.isCombatSkill = true;
@@ -472,8 +509,18 @@ namespace MonstarMod
             GameObject ClayBruiserbodyfab = BodyCatalog.FindBodyPrefab("ClayBruiserBody");
 
             CharacterBody clayB_pod = ClayBruiserbodyfab.GetComponent<CharacterBody>();
+
+            FootstepHandler clay_trail = ClayBruiserbodyfab.GetComponent<FootstepHandler>();
+
+
             //clayB_pod.preferredPodPrefab = box;
             clayB_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/StandardCrosshair");
+            clayB_pod.baseRegen = 0.6f;
+            clayB_pod.levelRegen = 0.15f;
+            //clayB_pod.HasBuff(BuffIndex.AffixBlue);
+            //clayB_pod.AddBuff(BuffIndex.AffixBlue);
+            
+
 
             SkillLocator ClayBruiser_SL = ClayBruiserbodyfab.GetComponent<SkillLocator>();
             GenericSkill ClayBruiser_primary = ClayBruiser_SL.primary;
@@ -531,7 +578,7 @@ namespace MonstarMod
             Clay_melee3.icon = ClayBowl_Icon;
             Clay_melee3.skillName = "Tar_Bowl";
             Clay_melee3.skillNameToken = "Clay Bowl";
-            Clay_melee3.skillDescriptionToken = "Fire off <style=cIsDamage>three</style> large balls of Tar along the terrain that home in on targets for <style=cIsDamage>100% damage</style> each. Covers enemies in Tar, which <color=#95cde5>slows down movement and attack speed</color>";
+            Clay_melee3.skillDescriptionToken = "Fire off <style=cIsDamage>three</style> large balls of Tar along the terrain that home in on opponents for <style=cIsDamage>100% damage</style> each. Covers opponents in Tar, which <color=#95cde5>slows down movement and attack speed</color>";
             Clay_melee3.interruptPriority = InterruptPriority.Skill;
             Clay_melee3.baseRechargeInterval = 5f;
             Clay_melee3.baseMaxStock = 1;
@@ -564,7 +611,7 @@ namespace MonstarMod
             Clay_melee2.icon = WarioBash_Clay_Icon;
             Clay_melee2.skillName = "ClayTackle";
             Clay_melee2.skillNameToken = "Soldier Tackle";
-            Clay_melee2.skillDescriptionToken = "A charging tackle that <color=#95cde5>stuns foes, knocking them back</color> and dealing <style=cIsDamage>250% damage</style>.";
+            Clay_melee2.skillDescriptionToken = "A charging tackle that <color=#95cde5>stuns opponents, knocking them back</color> and dealing <style=cIsDamage>250% damage</style>.";
             Clay_melee2.interruptPriority = InterruptPriority.Skill;
             Clay_melee2.baseRechargeInterval = 3.33f;
             Clay_melee2.baseMaxStock = 1;
@@ -597,6 +644,10 @@ namespace MonstarMod
             CharacterBody birb_pod = birb_body.GetComponent<CharacterBody>();
             birb_pod.preferredPodPrefab = box;
             birb_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/TreebotCrosshair");
+
+            //Transform Testis = birb_pod.aimOriginTransform;
+            //Testis.localScale += new Vector3(-0.5f, -0.5f, -0.5f);
+            //Testis.position += new Vector3(0, 0, -2);
 
             SkillLocator birb_SL = birb_body.GetComponent<SkillLocator>();
             GenericSkill birb_feather = birb_SL.primary;
@@ -651,29 +702,21 @@ namespace MonstarMod
 
             //G.S.M. Drone Skills
             GameObject Drone1bodyfab = BodyCatalog.FindBodyPrefab("Drone1Body");
-
+            Drone1bodyfab.AddComponent<EquipmentSlot>();
+         
             CharacterBody Drone1_pod = Drone1bodyfab.GetComponent<CharacterBody>();
             Drone1_pod.preferredPodPrefab = box;
             Drone1_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/StandardCrosshair");
-
+            
             SkillLocator Drone1_SL = Drone1bodyfab.GetComponent<SkillLocator>();
             GenericSkill Drone1_primary = Drone1_SL.primary;
+
             SkillFamily Drone1_pFam = Drone1_primary.skillFamily;
             SkillDef Drone1_slot1 = Drone1_pFam.variants[Drone1_pFam.defaultVariantIndex].skillDef;
 
             Drone1_slot1.skillNameToken = "STOCK: Standard SA Gun";
             Drone1_slot1.skillDescriptionToken = "Fire a volley of 4 rounds that deals <style=cIsDamage>4x50% damage</style>.";
             Drone1_slot1.icon = GunnerDrone_Icon;
-
-            //Attempt at enabling Equipment Slot
-            //EquipmentSlot Drone1_item_module = Drone1bodyfab.GetComponent<EquipmentSlot>();
-            //SkillLocator.PassiveSkill Nanomachines = new SkillLocator.PassiveSkill();
-            //Nanomachines.enabled = true;
-
-            //Gunner Skin Attempt
-            //SkinDef DroneChassis = ScriptableObject.CreateInstance<SkinDef>();
-            //DroneChassis.nameToken = "Test";
-            //ModelSkinController Chase = DroneChassis.
 
             //Gunner Drone Variant 1
             SkillDef GunnerDrone_Gun2 = ScriptableObject.CreateInstance<SkillDef>();
@@ -777,11 +820,19 @@ namespace MonstarMod
 
             //Walker Turret Skills
             GameObject EngiWalkerTurretbodyfab = BodyCatalog.FindBodyPrefab("EngiWalkerTurretBody");
+            EngiWalkerTurretbodyfab.AddComponent<EquipmentSlot>();
 
             CharacterBody EngiWalkerTurret_pod = EngiWalkerTurretbodyfab.GetComponent<CharacterBody>();
             EngiWalkerTurret_pod.preferredPodPrefab = pod;
             EngiWalkerTurret_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/BanditCrosshair");
             EngiWalkerTurret_pod.bodyFlags = CharacterBody.BodyFlags.SprintAnyDirection;
+            EngiWalkerTurret_pod.baseNameToken = "RC-TR58 Carbonizer Turret";
+            EngiWalkerTurret_pod.subtitleNameToken = "The Engi's Finest Creation";
+
+            //Transform Testis = EngiWalkerTurret_pod.aimOriginTransform;
+            //Testis.localScale += new Vector3(-0.5f, -0.5f, -0.5f);
+            //Testis.position += new Vector3(0, 1, 0);
+
 
             SkillLocator EngiWalkerTurret_SL = EngiWalkerTurretbodyfab.GetComponent<SkillLocator>();
             GenericSkill EngiWalkerTurret_primary = EngiWalkerTurret_SL.primary;
@@ -826,6 +877,7 @@ namespace MonstarMod
             EngiWalkerTurret_pFam.variants[WT3prevLength] = WT_variant3;
 
 
+
             //Walker Beam Variant 2
             SkillDef Walker_Beam2 = ScriptableObject.CreateInstance<SkillDef>();
             Walker_Beam2.activationState = new SerializableEntityStateType("EntityStates.Drone.DroneWeapon.FireGatling");
@@ -845,7 +897,7 @@ namespace MonstarMod
             Walker_Beam2.stockToConsume = 1;
             Walker_Beam2.isCombatSkill = true;
             Walker_Beam2.noSprint = true;
-            Walker_Beam2.canceledFromSprinting = false;
+            Walker_Beam2.canceledFromSprinting = true;
             Walker_Beam2.mustKeyPress = false;
             Walker_Beam2.fullRestockOnAssign = false;
             Walker_Beam2.skillIndex = 154;
@@ -858,130 +910,16 @@ namespace MonstarMod
             System.Array.Resize<SkillFamily.Variant>(ref EngiWalkerTurret_pFam.variants, WT2prevLength + 1);
             EngiWalkerTurret_pFam.variants[WT2prevLength] = WT_variant2;
 
-
-
-            /*
-            I originally had all of the drones included, but decided it would be more interesting to merge them all
-            Once I figure out the Skin functionality, I will include these as alts to the normal drone.
             
-            var Missile_Drone = new SurvivorDef
-            {
-                bodyPrefab = BodyCatalog.FindBodyPrefab("MissileDroneBody"),
-                descriptionToken = "Military Issue Drone: Missile Drone. \nIf you want something dead, this is the drone for you!\n\n<style=cSub>< i > This version of the Missile Drone is running on older firmware and cannot access its Equipment Subroutines. <style=cIsHealth>(cannot use Equipment)</style></style>.\n\n< i > The missiles this Unit fires homes in on the closest enemy, which can provide problems if you are being overwhelmed.",
-                displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/MissileDroneBody"),
-                primaryColor = new Color(0.8039216f, 0.482352942f, 0.843137264f),
-                unlockableName = "EngiWalker",
-                survivorIndex = SurvivorIndex.Count + 1,
-            };
-            GameObject MissileDronebodyfab = BodyCatalog.FindBodyPrefab("MissileDroneBody");
-            SkillLocator MissileDrone_SL = MissileDronebodyfab.GetComponent<SkillLocator>();
-            GenericSkill MissileDrone_primary = MissileDrone_SL.primary;
-            SkillFamily MissileDrone_pFam = MissileDrone_primary.skillFamily;
-            SkillDef MissileDrone_slot1 = MissileDrone_pFam.variants[MissileDrone_pFam.defaultVariantIndex].skillDef;
-            CharacterBody MissileDrone_pod = MissileDronebodyfab.GetComponent<CharacterBody>();
-            MissileDrone_pod.preferredPodPrefab = box;
-            MissileDrone_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/NULL");
-            MissileDrone_slot1.skillNameToken = "Ballistic Missile Barage";
-            MissileDrone_slot1.skillDescriptionToken = "Launch a barrage of 4 missiles that deals <style=cIsDamage>4x90% damage</style>.";
-            MissileDrone_slot1.icon = commandoSP_Icon;
-            */
-
-
-
-            /*
-            I was going to make the Strike Drone the main drone, but it's internal stats are too high for the game to be any challenge,
-            so sadly it was cut.
+            //Test Skills
+            GameObject testPrefab = BodyCatalog.FindBodyPrefab("GravekeeperBody");
+            CharacterBody testBody = testPrefab.GetComponent<CharacterBody>();
             
-            var Strike_Drone = new SurvivorDef
-            {
-                bodyPrefab = BodyCatalog.FindBodyPrefab("BackupDroneBody"),
-                descriptionToken = "Unstable Surplus Drone: The Strike Drone. \n2.0 version of the Standard Gunner Drone, but discontinued after many units spontaneously combusted. \n\n<style=cSub>< i > Possesses the same manuverability as the Gunner Drone, but also the same Equipment bugs... <style=cIsHealth>(cannot use Equipment)</style>.\n\n< i > The Minigun has a bit of a delay before it stops firing bullets.\n\n< i > The mounted gun deals more damage the closer you are to an enemy, but less damage if you are too far.</style>",
-                displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/BackupDroneBody"),
-                primaryColor = new Color(0.8039216f, 0.482352942f, 0.843137264f),
-                unlockableName = "OldDrone",
-                survivorIndex = SurvivorIndex.Count + 1,
-            };
-            GameObject BackupDronebodyfab = BodyCatalog.FindBodyPrefab("BackupDroneBody");
-            SkillLocator BackupDrone_SL = BackupDronebodyfab.GetComponent<SkillLocator>();
-            GenericSkill BackupDrone_primary = BackupDrone_SL.primary;
-            SkillFamily BackupDrone_pFam = BackupDrone_primary.skillFamily;
-            SkillDef BackupDrone_slot1 = BackupDrone_pFam.variants[BackupDrone_pFam.defaultVariantIndex].skillDef;
-            CharacterBody BackupDrone_pod = BackupDronebodyfab.GetComponent<CharacterBody>();
-            BackupDrone_pod.preferredPodPrefab = box;
-            BackupDrone_slot1.skillNameToken = "Mini-Minigun";
-            BackupDrone_slot1.skillDescriptionToken = "Shoot a rapid-fire Minigun that deals <style=cIsDamage>60% damage</style>.";
-            BackupDrone_slot1.icon = StrikeDrone_Icon;
-            */
 
-
-            /*
-            Too big, and I couldn't think of any skills to add.
-            Not worth the trouble in my opinion
+            Transform Testis = testBody.aimOriginTransform;
+            //Testis.localScale += new Vector3(-2f, -2f, -2f);
+            Testis.position += new Vector3(0, -5f, 10);
             
-            var Super_Drone = new SurvivorDef
-            {
-                bodyPrefab = BodyCatalog.FindBodyPrefab("MegaDroneBody"),
-                descriptionToken = "Summary Text\n\n<style=cSub>< i >Flavor-Text</style>",
-                displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/MegaDroneBody"),
-                primaryColor = new Color(0.8039216f, 0.482352942f, 0.843137264f),
-                unlockableName = "MegaDrone",
-                survivorIndex = SurvivorIndex.Count + 1,
-            };
-            GameObject MegaDronebodyfab = BodyCatalog.FindBodyPrefab("MegaDroneBody");
-            SkillLocator MegaDrone_SL = MegaDronebodyfab.GetComponent<SkillLocator>();
-            GenericSkill MegaDrone_primary = MegaDrone_SL.primary;
-            GenericSkill MegaDrone_secondary = MegaDrone_SL.secondary;
-            SkillFamily MegaDrone_pFam = MegaDrone_primary.skillFamily;
-            SkillFamily MegaDrone_sFam = MegaDrone_secondary.skillFamily;
-            SkillDef MegaDrone_slot1 = MegaDrone_pFam.variants[MegaDrone_pFam.defaultVariantIndex].skillDef;
-            SkillDef MegaDrone_slot2 = MegaDrone_sFam.variants[MegaDrone_sFam.defaultVariantIndex].skillDef;
-            CharacterBody MegaDrone_pod = MegaDronebodyfab.GetComponent<CharacterBody>();
-            MegaDrone_pod.preferredPodPrefab = box;
-            MegaDrone_slot1.skillNameToken = "S4SH4-Minigun";
-            MegaDrone_slot1.skillDescriptionToken = "Fire twin-mounted Miniguns that deal <style=cIsDamage>150% damage</style> per bullet.";
-            MegaDrone_slot2.skillNameToken = "CR0K3T-Launcher";
-            MegaDrone_slot2.skillDescriptionToken = "Fire two large rockets that deal <style=cIsDamage>2x310% damage</style>.";
-            MegaDrone_slot1.icon = commandoP_Icon;
-            MegaDrone_slot2.icon = commandoSP_Icon;
-            */
-
-
-            /*
-            This was an attempt at editing the base skills
-            However, this also affects all other instances of whichever character you edit
-            
-            For some extra fun, enable this block of code. It turns all Lemurians into absolute units
-            
-            int bodyIndex = BodyCatalog.FindBodyIndex("LemurianBody");
-            SkillLocator skillLocator = BodyCatalog.GetBodyPrefab(bodyIndex).GetComponent<SkillLocator>();
-            SkillFamily skillFamily = skillLocator.primary.skillFamily;
-            SkillDef defaultSkill = skillFamily.variants[skillFamily.defaultVariantIndex].skillDef;
-            defaultSkill.activationState = new SerializableEntityStateType("EntityStates.LemurianBruiserMonster.ChargeMegaFireball");
-            object box2 = defaultSkill.activationState;
-            defaultSkill.activationState = (SerializableEntityStateType)box2;
-            */
-
-
-
-
-            //Garbage code from some early test
-            //R2API.SurvivorAPI.AddSurvivorOnReady(test);
-            //SurvivorAPI.SurvivorDefinitions.Insert(3, ClayB_Surv);
-
-            //GameObject lizhard = CharacterBody.CharacterBody("lemurianBody");
-            //Boiler-Plate for Skill additions/edits
-            //First, locate your character
-            //GameObject commandobodyfab = BodyCatalog.FindBodyPrefab("CommandoBody");
-            //then prime the skill set
-            //SkillLocator commando_SL = commandobodyfab.GetComponent<SkillLocator>();
-            //define your slot to pull/push data to/from
-            //GenericSkill commando_primary = commando_SL.primary;
-            //get that slot's skillFamily
-            //SkillFamily commando_pFam = commando_primary.skillFamily;
-            //finally declare the skillDef for the slot for editing
-            //SkillDef commando_slot1 = commando_pFam.variants[commando_pFam.defaultVariantIndex].skillDef;
-
-
 
 
         }
@@ -989,24 +927,58 @@ namespace MonstarMod
         public void Awake()
         {
 
+            var lemurian_display = Resources.Load<GameObject>("prefabs/characterbodies/LemurianBody").GetComponent<RoR2.ModelLocator>().modelTransform.gameObject;
+            lemurian_display.AddComponent<Lemurian_Display>();
+
+
+            var imp_display = Resources.Load<GameObject>("prefabs/characterbodies/ImpBody").GetComponent<RoR2.ModelLocator>().modelTransform.gameObject;
+            imp_display.AddComponent<Imp_Display>();
+
+            var clay_display = Resources.Load<GameObject>("prefabs/characterbodies/claybruiserbody").GetComponent<RoR2.ModelLocator>().modelTransform.gameObject;
+            clay_display.AddComponent<Clay_Display>();
+
+            var birb_display = Resources.Load<GameObject>("prefabs/characterbodies/Vulturebody").GetComponent<RoR2.ModelLocator>().modelTransform.gameObject;
+            birb_display.AddComponent<Birb_Display>();
+
+            var drone_display = Resources.Load<GameObject>("prefabs/characterbodies/Drone1Body").GetComponent<RoR2.ModelLocator>().modelTransform.gameObject;
+            drone_display.AddComponent<Drone_Display>();
+
+            var walker_display = Resources.Load<GameObject>("prefabs/characterbodies/EngiWalkerTurretBody").GetComponent<RoR2.ModelLocator>().modelTransform.gameObject;
+            walker_display.AddComponent<Walker_Display>();
+            
+            
+            //var test_display = Resources.Load<GameObject>("prefabs/characterbodies/GravekeeperBody").GetComponent<RoR2.ModelLocator>().modelTransform.gameObject;
+            //test_display.AddComponent<Test_Display>();
+            
+
             //Lemurian
             var Lemur_Surv = new SurvivorDef
             {
 
+                
                 bodyPrefab = Resources.Load<GameObject>("prefabs/characterbodies/LemurianBody"),
-                descriptionToken = "The Lemurian is the very definition of struggle. Weak and fragile, but determined to rise to the top of the food chain. \n\n<style=cSub>< i > Gets <style=cIsHealth>stunned easily</style>. Only engage in hand-to-hand if absolutely necessary or confident!\n\n< i > Due to their bizarre physiology, <style=cIsHealth>they cannot use some healing-based items.</style></color>",
-                displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/LemurianBody"),
+                descriptionToken = "The Lemurian is the very definition of struggle. Weak and fragile, but determined to rise to the top of the food chain." +
+                "\n\n<style=cSub>< i > Gets <style=cIsHealth>stunned easily</style>. Only engage in hand-to-hand if absolutely necessary or confident!" +
+                "\n\n< i > Due to their bizarre physiology, <style=cIsHealth>they cannot use some healing-based items.</style></color>",
+                displayPrefab = lemurian_display,
                 primaryColor = new Color(0.4901960784f, 0.1490196078f, 0.8039215686f),
                 unlockableName = "Lemur"
-
+                
             };
 
             //Imp
             var Imp_Surv = new SurvivorDef
             {
                 bodyPrefab = Resources.Load<GameObject>("prefabs/characterbodies/ImpBody"),
-                descriptionToken = "An aspiring peon that seeks to please its Overlord by sacrificing many creatures.\n\n<style=cSub>< i > The Bleed from its 'Rend Flesh' attack stacks, so make sure that both claws hit your opponent for maximum damage output!\n\n< i > Has great mobility due to its natural ability to levitate, meaning it can jump high and sprint in any direction!\n\n< i > 'Providence's Rapture' always brings you to the same fixed point on each map. Learn these points and plan accordingly!</style>",
-                displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/ImpBody"),
+                descriptionToken = "An aspiring peon that seeks to please its Overlord by sacrificing many creatures. It is using the chaos caused by the bizarre visitors to achieve its goal swiftly." +
+                "\n\n<style=cSub>" +
+                "< i > The Bleed from its 'Rend Flesh' stacks, so make sure that both claws hit your opponent for maximum damage output!" +
+                "\n\n< i > Has great mobility, meaning it can double jump and avoid fall damage!" +
+                "\n\n< i > 'Providence's Rapture' always brings you to the same fixed point on each map. Learn these points and plan accordingly!" +
+                "\n\n< i >In order to stun enemies a second time with Shadow Sneak, you must attack out of it." +
+                "\n\n< i > Shadow Sneak also gives the Imp a burst of speed for increased sneak potential." +
+                "</style>",
+                displayPrefab = imp_display,
                 primaryColor = new Color(0.6156862745f, 0.07450980392f, 0.07450980392f),
                 unlockableName = "Imp"
             };
@@ -1017,8 +989,15 @@ namespace MonstarMod
             var ClayB_Surv = new SurvivorDef
             {
                 bodyPrefab = Resources.Load<GameObject>("prefabs/characterbodies/claybruiserbody"),
-                descriptionToken = "A wandering Clayman. It got seperated from its Dunestrider some time ago. Leaderless and without purpose, it now wanders the planet searching for strong creatures to fight in an effort to validate its solitary existance. \n\n<style=cSub>< i > The Templar's Jar gets more accurate the closer you are to a target.\n\n< i > The Jar has a slow start-up and slows you down while using it.\n\n< i > Due to their bizarre physiology, <style=cIsHealth>they cannot use some healing-based items.</style>\n\n< i > Terravolley's Jars will travel to wherever the <u>center</u> of the crosshair is pointing. Aim true!</color>",
-                displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/claybruiserbody"),
+                descriptionToken = "A wandering Clayman. It got seperated from its Dunestrider some time ago. Leaderless and without purpose, it now wanders the planet searching for strong creatures to fight in an effort to validate its solitary existance. " +
+                "\n\n<style=cSub>" +
+                "< i > Sandstorm gets more accurate the closer you are to a target." +
+                "\n\n< i > Sandstorm has a slow start-up and slows you down while using it." +
+                "\n\n< i > Due to their bizarre physiology, <style=cIsHealth>they cannot use some healing-based items.</style>" +
+                "\n\n< i > Terravolley's Jars will travel to wherever the <u>center</u> of the crosshair is pointing. Aim true! " +
+                "\n\n< i > Clay Bowl will always travel along the ground and slightly home in on enemies." +
+                "</color>",
+                displayPrefab = clay_display,
                 primaryColor = new Color(0.9568627451f, 0.6431372549f, 0.3764705882f),
                 unlockableName = "Buff_Tarboy"
 
@@ -1028,8 +1007,10 @@ namespace MonstarMod
             var Birb_Surv = new SurvivorDef
             {
                 bodyPrefab = Resources.Load<GameObject>("prefabs/characterbodies/vulturebody"),
-                descriptionToken = "After having many of its eggs broken by the strange newcomers, one of the Vultures decided to drop its opportunistic lifestyle and hunt down the trespassers. \n\n<style=cSub>< ! > When landing, you will automatically drift towards the nearest solid surface\n\n< i > 'Wrath of the Alloys' randomly transitions from a vertical volley and a horizontal volley. It also has intense knockback due to its power.</color>",
-                displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/vulturebody"),
+                descriptionToken = "After having many of its eggs broken by the strange newcomers, one of the Vultures decided to drop its opportunistic lifestyle and hunt down the trespassers. " +
+                "\n\n<style=cSub>< ! > When landing, you will automatically drift towards the nearest solid surface" +
+                "\n\n< i > 'Wrath of the Alloys' randomly transitions from a vertical volley and a horizontal volley. It also has intense knockback due to its power.</color>",
+                displayPrefab = birb_display,
                 primaryColor = new Color(0.06274509804f, 0.5019607843f, 0.4392156863f),
                 unlockableName = "Carrion Pigeon"
             };
@@ -1038,8 +1019,11 @@ namespace MonstarMod
             var Gun_Drone = new SurvivorDef
             {
                 bodyPrefab = Resources.Load<GameObject>("prefabs/characterbodies/Drone1Body"),
-                descriptionToken = "Experimental Drone: G.S.M. Model. \nMulti-Purpose, Custom-Built Drone, combines the functionality of multiple units both civilian and military. NOT FOR RETAIL SALE!\n\n<style=cSub>< i > In order to build this custom unit, some corners had to be cut. <style=cIsHealth>(cannot use Equipment)</style>.\n\n< i > Thus Unit is quick and nimble, but its chassis is somewhat fragile.\n\n< i > The mounted gun deals more damage the closer you are to an enemy, but less damage if you are too far. \n\n< i > The Missile Barrage rockets home in on the closest enemy, which can cause a problem if you are being overwhelmed.</style>",
-                displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/Drone1Body"),
+                descriptionToken = "Experimental Drone: G.S.M. Model. \nMulti-Purpose, Custom-Built Drone, combines the functionality of multiple units both civilian and military. NOT FOR RETAIL SALE!" +
+                "\n\n<style=cSub>< i > Thus Unit is quick and nimble, but its chassis is somewhat fragile." +
+                "\n\n< i > The mounted gun deals more damage the closer you are to an enemy, but less damage if you are too far." +
+                "\n\n< i > The Missile Barrage rockets home in on the closest enemy, which can cause a problem if you are being overwhelmed.</style>",
+                displayPrefab = drone_display,
                 primaryColor = new Color(0.3176470588f, 0.5647058824f, 0.9294117647f),
                 unlockableName = "GDrone"
 
@@ -1049,14 +1033,29 @@ namespace MonstarMod
             SurvivorDef Engi_Walker = new SurvivorDef
             {
                 bodyPrefab = Resources.Load<GameObject>("prefabs/characterbodies/EngiWalkerTurretBody"),
-                descriptionToken = "<i>No way in Hell am I going down there! I'll send in one of my new Walker Turrets instead!</i>\n~The Engineer when asked by Loader to do some scavenging on the surface of the planet.\n\n<style=cSub>< i > Unfortunately, the Engineer forgot to program his Walker to use equipment... <style=cIsHealth>(cannot use Equipment)</style>.\n\n< i > Can easily walk up steep slopes\n\n< i > The TR58 Carbonizer Beam has a short-range, and isn't affected by attack-speed buffs.\n\n< i ><style=cIsHealth><u> WILL NOT WORK IN MULTIPLAYER!!!</u></style></style>",
-                displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/EngiWalkerTurretBody"),
+                descriptionToken = "<i>No way in Hell am I going down there! I'll send in one of my new Walker Turrets instead!</i>" +
+                "\n~The Engineer when asked by Loader to do some scavenging on the surface of the planet." +
+                "\n\n<style=cSub>< i > Can easily walk up steep slopes\n\n< i > The TR58 Carbonizer Beam has a short-range, and isn't affected by attack-speed buffs." +
+                "\n\n< i >The Gatling Gun has a 2-Second reload between each batch of bullets." +
+                "\n\n< i ><style=cIsHealth><u> WILL NOT WORK IN MULTIPLAYER!!!</u></style></style>",
+                displayPrefab = walker_display,
                 primaryColor = new Color(0.3019607843f, 0.7490196078f, 0.4392156863f),
                 unlockableName = "EngiWalker"
 
             };
 
+            /*
+            //Test
+            SurvivorDef test = new SurvivorDef
+            {
+                bodyPrefab = Resources.Load<GameObject>("prefabs/characterbodies/GravekeeperBody"),
+                descriptionToken = "Experiment 5A",
+                displayPrefab = test_display,
+                primaryColor = new Color(0.3019607843f, 0.7490196078f, 0.4392156863f),
+                unlockableName = "EngiWalker"
 
+            };
+            */
 
             R2API.SurvivorAPI.AddSurvivor(Engi_Walker);
             R2API.SurvivorAPI.AddSurvivor(Gun_Drone);
@@ -1064,35 +1063,333 @@ namespace MonstarMod
             R2API.SurvivorAPI.AddSurvivor(Imp_Surv);
             R2API.SurvivorAPI.AddSurvivor(ClayB_Surv);
             R2API.SurvivorAPI.AddSurvivor(Birb_Surv);
+            //R2API.SurvivorAPI.AddSurvivor(test);
 
 
 
         }
+
+
+        //Lemur Display
+        public class Lemurian_Display : MonoBehaviour
+        {
+            
+            
+            internal void OnEnable()
+            {
+                
+                if (gameObject.transform.parent.gameObject.name == "CharacterPad")
+                {
+                    Debug.Log("Lemurian Display - - - SUCCESS!");
+                    var animator = gameObject.GetComponent<Animator>();
+                    Shooting(animator);
+
+                }
+                else
+                {
+                    Debug.Log("");
+                    //transform.localScale += new Vector3(1.5f, 1.5f, 1.5f);
+                }
+            }
+
+            private void Shooting(Animator animator)
+            {
+                PlayAnimation("Body", "Spawn1", "Spawn1.playbackRate", 1, animator);
+                transform.Translate(0f, 0, -1f);
+                transform.localScale += new Vector3(-0.02f, -0.02f, -0.02f);
+
+
+            }       
+            private void PlayAnimation(string layerName, string animationStateName, string playbackRateParam, float duration, Animator animator)
+            {
+                int layerIndex = animator.GetLayerIndex(layerName);
+                animator.SetFloat(playbackRateParam, 1f);
+                animator.PlayInFixedTime(animationStateName, layerIndex, 0f);
+                animator.Update(0f);
+                float length = animator.GetCurrentAnimatorStateInfo(layerIndex).length;
+                animator.SetFloat(playbackRateParam, length / duration);
+
+            }          
+        }
+
+
+        //Imp Display
+        private class Imp_Display : MonoBehaviour
+        {
+            internal void OnEnable()
+            {
+                if (gameObject.transform.parent.gameObject.name == "CharacterPad")
+                {
+                    Debug.Log("Imp Display - - - SUCCESS!");
+                    var animator = gameObject.GetComponent<Animator>();
+                    Shooting(animator);
+
+                }
+                else
+                {
+                    Debug.Log("");
+                }
+            }
+
+            private void Shooting(Animator animator)
+            {
+                PlayAnimation("Body", "Hurt1", "Hurt1.playbackRate", 1f, animator);
+                transform.Translate(0.0f, 0, -1f);
+                transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
+                //transform.Rotate(0, 125, 0);
+                //GameObject
+
+            }
+
+
+           
+
+            private void PlayAnimation(string layerName, string animationStateName, string playbackRateParam, float duration, Animator animator)
+            {
+                int layerIndex = animator.GetLayerIndex(layerName);
+                animator.SetFloat(playbackRateParam, 1f);
+                animator.PlayInFixedTime(animationStateName, layerIndex, 0f);
+                animator.Update(0f);
+                float length = animator.GetCurrentAnimatorStateInfo(layerIndex).length;
+                animator.SetFloat(playbackRateParam, length / duration);
+            }
+        }
+
+        
+        //Clay T. Display
+        private class Clay_Display : MonoBehaviour
+        {
+            internal void OnEnable()
+            {
+                if (gameObject.transform.parent.gameObject.name == "CharacterPad")
+                {
+                    Debug.Log("animation");
+                    var animator = gameObject.GetComponent<Animator>();
+                    Shooting(animator);
+
+                }
+                else
+                {
+                    Debug.Log("");
+
+                }
+            }
+            private void Shooting(Animator animator)
+            {
+                PlayAnimation("Body", "Spawn", "Spawn.playbackRate", 1.3f, animator);
+
+                //Enable this for a slo-mo on the Clay's Spawn animation
+                //PlayAnimation("Body", "Spawn", "Spawn.playbackRate", 15, animator);
+
+                transform.Translate(0.8f, 0, -1f);
+                transform.localScale += new Vector3(-2.05f, -0.05f, -2.05f);
+                transform.Rotate(0, 125, 0);
+            }
+
+            private void PlayAnimation(string layerName, string animationStateName, string playbackRateParam, float duration, Animator animator)
+            {
+                int layerIndex = animator.GetLayerIndex(layerName);
+                animator.SetFloat(playbackRateParam, 1f);
+                animator.PlayInFixedTime(animationStateName, layerIndex, 0f);
+                animator.Update(0f);
+                float length = animator.GetCurrentAnimatorStateInfo(layerIndex).length;
+                animator.SetFloat(playbackRateParam, length / duration);
+            }
+        }
+
+
+        //Vulture Display
+        private class Birb_Display : MonoBehaviour
+        {
+            internal void OnEnable()
+            {
+                if (gameObject.transform.parent.gameObject.name == "CharacterPad")
+                {
+                    Debug.Log("Vulture Display - - - SUCCESS!");
+                    var animator = gameObject.GetComponent<Animator>();
+                    Shooting(animator);
+
+                }
+                else
+                {
+                    Debug.Log("");
+                }
+            }
+            private void Shooting(Animator animator)
+            {
+                PlayAnimation("Body", "Spawn", "Spawn.playbackRate", 1, animator);
+
+                transform.Translate(0f, 0, -1f);
+                transform.localScale += new Vector3(-0.05f, -0.05f, -0.05f);
+            }
+
+            private void PlayAnimation(string layerName, string animationStateName, string playbackRateParam, float duration, Animator animator)
+            {
+                int layerIndex = animator.GetLayerIndex(layerName);
+                animator.SetFloat(playbackRateParam, 1f);
+                animator.PlayInFixedTime(animationStateName, layerIndex, 0f);
+                animator.Update(0f);
+                float length = animator.GetCurrentAnimatorStateInfo(layerIndex).length;
+                animator.SetFloat(playbackRateParam, length / duration);
+            }
+        }
+
+
+        //Drone Display
+        private class Drone_Display : MonoBehaviour
+        {
+            internal void OnEnable()
+            {
+                if (gameObject.transform.parent.gameObject.name == "CharacterPad")
+                {
+                    Debug.Log("Drone Display - - - SUCCESS!");
+                    var animator = gameObject.GetComponent<Animator>();
+                    Shooting(animator);
+
+                }
+                else
+                {
+                    Debug.Log("");
+                }
+            }
+            private void Shooting(Animator animator)
+            {
+                PlayAnimation("Body", "Idle", "Idle.playbackRate", 3, animator);
+
+                transform.Translate(0f, 1f, -0.5f);
+                transform.Rotate(0, 160f, 0);
+            }
+
+            private void PlayAnimation(string layerName, string animationStateName, string playbackRateParam, float duration, Animator animator)
+            {
+                int layerIndex = animator.GetLayerIndex(layerName);
+                animator.SetFloat(playbackRateParam, 1f);
+                animator.PlayInFixedTime(animationStateName, layerIndex, 0f);
+                animator.Update(0f);
+                float length = animator.GetCurrentAnimatorStateInfo(layerIndex).length;
+                animator.SetFloat(playbackRateParam, length / duration);
+            }
+        }
+
+
+        //Walker Display
+        private class Walker_Display : MonoBehaviour
+        {
+            internal void OnEnable()
+            {
+                if (gameObject.transform.parent.gameObject.name == "CharacterPad")
+                {
+                    Debug.Log("Walker Display - - - SUCCESS!");
+                    var animator = gameObject.GetComponent<Animator>();
+                    Shooting(animator);
+
+                }
+                else
+                {
+                    Debug.Log("");
+                }
+            }
+            private void Shooting(Animator animator)
+            {
+                PlayAnimation("Body", "Spawn", "Spawn.playbackRate", 1.11f, animator);
+                transform.localScale += new Vector3(-1f, 0f, 0f);
+                transform.Translate(0f, 0f, -0.5f);
+                transform.Rotate(0f, -107f, 0f);
+            }
+
+            private void PlayAnimation(string layerName, string animationStateName, string playbackRateParam, float duration, Animator animator)
+            {
+                int layerIndex = animator.GetLayerIndex(layerName);
+                animator.SetFloat(playbackRateParam, 1f);
+                animator.PlayInFixedTime(animationStateName, layerIndex, 0f);
+                animator.Update(0f);
+                float length = animator.GetCurrentAnimatorStateInfo(layerIndex).length;
+                animator.SetFloat(playbackRateParam, length / duration);
+            }
+        }
+
+        /*
+        //Test Display
+        private class Test_Display : MonoBehaviour
+        {
+
+
+            
+
+            internal void OnEnable()
+            {
+                if (gameObject.transform.parent.gameObject.name == "CharacterPad")
+                {
+                    Debug.Log("Test Display - - - SUCCESS!");
+                    var animator = gameObject.GetComponent<Animator>();
+                    Shooting(animator);
+
+                }
+                else
+                {
+                    GameObject zest = BodyCatalog.FindBodyPrefab("LemurianBody");
+                    CharacterBody testbody = zest.GetComponent<CharacterBody>();
+                    Debug.Log(testbody.isPlayerControlled);
+                    //transform.Translate(0f, 0, -1f);
+                    //transform.localScale += new Vector3(-0.2f, -0.2f, -0.2f);
+                    transform.localScale += new Vector3(-0.65f, -0.65f, -0.65f);
+                    
+
+                }
+            }
+
+            private void Shooting(Animator animator)
+            {
+                PlayAnimation("Body", "Hurt1", "Hurt1.playbackRate", 1f, animator);
+                transform.Translate(0.0f, 0, -1f);
+                transform.localScale += new Vector3(-0.9f, -0.9f, -0.9f);
+                //transform.Rotate(0, 125, 0);
+
+            }
+
+            private void PlayAnimation(string layerName, string animationStateName, string playbackRateParam, float duration, Animator animator)
+            {
+                int layerIndex = animator.GetLayerIndex(layerName);
+                animator.SetFloat(playbackRateParam, 1f);
+                animator.PlayInFixedTime(animationStateName, layerIndex, 0f);
+                animator.Update(0f);
+                float length = animator.GetCurrentAnimatorStateInfo(layerIndex).length;
+                animator.SetFloat(playbackRateParam, length / duration);
+            }
+        }
+        */
+
+
+
 
         //The Update() method is run on every frame of the game.
         public void Update()
         {
 
 
-
-
             //This if statement checks if the player has currently pressed F2, and then proceeds into the statement:
             if (Input.GetKeyDown(KeyCode.F4))
             {
+
+                
                 //We grab a list of all available Tier 3 drops:
                 //var dropList = Run.instance.availableTier3DropList;
 
-                Chat.AddMessage("spell icup");
+                //Chat.AddMessage("spell icup");
+                //transform.Translate(0, 1, 0);
 
                 //Randomly get the next item:
                 //var nextItem = Run.instance.treasureRng.RangeInt(0, dropList.Count);
 
                 //Get the player body to use a position:
-                //var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
+                //var testy = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
+                
 
                 //And then finally drop it infront of the player.
                 //PickupDropletController.CreatePickupDroplet(dropList[nextItem], transform.position, transform.forward * 20f);
             }
+
+
 
         }
 
