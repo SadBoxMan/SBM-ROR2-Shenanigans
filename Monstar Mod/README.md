@@ -1,11 +1,16 @@
-# Monstar Mod(e) by SadBoxMan
+# Monstar Mod by SadBoxMan
+
+### Installation
+ 1. Extract contents from the zip file and place it into  "/Risk of Rain 2/BepInEx/plugins/Monstar Mod/" folder.
+ 2. Enjoy!
+
 
 ## Overview
 This is a mod for Risk of Rain 2 that adds in a select few monsters and robots and gives each new skills for a new and challenging experience.
 
 *A fun novelty and Proof-of-Concept that adds some challenge and even more replayability*
 
-<br>
+
 
 ## Features
 Includes ~~7~~ 6 new survivors:
@@ -16,9 +21,30 @@ Includes ~~7~~ 6 new survivors:
   - The G.S.M. Unit (Multi-Function Drone)
   - The Engi's Walking Turret
   - ~~The TS-280 Prototype Drone~~
-<br>
+
 Adds in new Skill variations for alternate playstyles.
-<br>Balancing for new survivor skills
+Balancing for new survivors and survivor skills
+
+
+## How to use
+**In order to utilize the extra skills, you must have loadouts unlocked in the base game!**
+It doesn't matter what skill/skin you have unlocked, all you need is one to unlock the extra loadouts menu.
+
+
+## Changelog
+### Version 1.3.6
+- Fixed the Survivor Select to properly show the new survivors
+- Displays are scaled, rotated, etc. to better show off each model
+
+### Version 1.2.0
+- Walker Turret and GSM Drone can now use equipment
+
+### Version 1.1.0
+- Updated since recent game update broke the survivor catalog
+
+### Version 1.0.X
+- Initial Release
+- Various Bugfixes
 
 
 ## Skills Added
@@ -39,7 +65,7 @@ Adds in new Skill variations for alternate playstyles.
   - Also a decent way to move just a little faster
     - Can be used while sprinting!
     
-<br>
+
  
 ### Imp Skills:
 #### Passive:
@@ -60,7 +86,7 @@ Adds in new Skill variations for alternate playstyles.
   - It is actually broken, but at the same time it adds a bit of strategy to the Imp's Playstyle
     - Teleport to a safe, fixed location.... Which is usually very high in the sky (hence the Fall Damage change)
 
-<br>
+
 
 ### Clay Templar Skills:
 #### Primary Variants:
@@ -82,15 +108,15 @@ Adds in new Skill variations for alternate playstyles.
   - Can't do jack against airborne targets
   - **HAS A BUG IN MULTIPLAYER, SEE BUG NOTES BELOW FOR DETAILS**
 
-<br>
+
 
 ### Alloy Vulture Skills:
 #### Primary Variants:
 - **Wrath of the Alloys (name WIP?)**
-  - Fire 7(?) balls of energy that burn the ground for 5 seconds
+  - Fire balls of energy that burn the ground for 5 seconds
     - Has intense knockback
   - **Has a known bug with Multiplayer (documented below in the "Known Bugs" section)**
-<br>
+
 
 ### Drone Skills
 #### Primary Variants:
@@ -100,7 +126,7 @@ Adds in new Skill variations for alternate playstyles.
   - Just a beefed-up version of the base skill
      - A tad overpowered by the time you get to area 3/4
   - Taken from the Backup/Strike Drone
-- **UPGRADE: CR0CK37 Launcher**
+- **UPGRADE: Rocket Launcher**
   - Fire a large rocket
     - Also includes Splash Damage
   - Taken from the Unused Paladin character
@@ -111,39 +137,43 @@ Adds in new Skill variations for alternate playstyles.
   - **Has a known bug with Multiplayer (documented below in the "Known Bugs" section)**
 
 
-<br>
+
 
 ### Walker-Turret Skills
 #### **WILL NOT WORK IN MULTIPLAYER**
+### 'Passive':
+- Sprint in any direction
 #### Primary Variants:
 - **TR12 Gauss Cannon**
   - It's just the Engineer's Base Turret's Gun...
 - **Gatling Gun (name WIP)**
   - 40 shots with a 2 second cooldown when you run out of ammunition
  
-<br>
 
 ## Plans
 - [ ] Add more Survivors(?)
-  - [x] Remove Mega Drone(?)
+  - [x] Remove Mega Drone
 - [x] Add lore-friendly flavor text
-  - [ ] Balance skills to better fit the survivors
+  - [x] Balance skills to better fit the survivors
+  - [x] Fix Equipment Use on Walker/Drone
+  - [ ] Fix the Imp's Fall Damage
 - [x] Fix general Multiplayer Compatibility
   - [ ] Fix other Multiplayer Bugs
-- [ ] Change Walker Turret's Name to match it's actual name
+- [x] Change Walker Turret's Name to match it's actual name
 - [ ] Add new icons for all new skills
   - [x] Find someone who knows how to draw
-- [ ] Add in Display Prefabs for each new survivor
+- [x] Add in Display Prefabs for each new survivor
 - [ ] Add Skin functionality
 
-<br>
+
 
 ## Known Bugs
 - Skill Variants won't even show up if you don't have at least 1 variant unlocked already for the base survivors
 - Many Skills aren't animated properly and may look a bit goofy
 - Imp's "Providence's Rapture" skill is technically a glitch all on its own
+- The Turret has a Camera Bug when walking on certain terrain types
+- **Changing profiles after loading the game can softlock the game**
 
-<br>
 
 ### Various Multiplayer Bugs
   - Vulture's "Wrath of the Alloys" only has knockback for the Host
@@ -153,24 +183,19 @@ Adds in new Skill variations for alternate playstyles.
   - Imp's "Passive Skills" do not work for anyone online
 
   
-<br>
+
 
 ## Special Thanks
 - Rein - For their Skill Utility Code
+- SushiDev - Various debugging help
 - The Risk of Rain 2 Modding Discord - For being a huge help and helping me debug this hot mess
 
-<br>
+
  
 ## Dependencies
 - BepinEX
 - R2API
 - ROR 
 
-<br>
 
-# Installation
-###  With BepInEx
- 1. Extract "Monstar Mod.dll" from the zip file and place it into  "/Risk of Rain 2/BepInEx/plugins/Monstar Mod/" folder.
- 2. Extract the "Assets" Folder and place in the same folder as "Monstar Mod.dll"
- 3. If everything is done correctly, the Monstar Mod folder will have "Monstar Mod.dll" and a folder called "Assets"
- 4. Enjoy!
+
