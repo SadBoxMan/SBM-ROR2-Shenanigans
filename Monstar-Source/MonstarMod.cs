@@ -15,14 +15,18 @@ using MonoMod.Cil;
 using KinematicCharacterController;
 using System.Linq;
 using EntityStates;
-using R2API;
+using R2API.Utils;
 using SurvivorUtils;
 
 namespace MonstarMod
 {
-
+    [R2APISubmoduleDependency(new string[]
+{
+        "SurvivorAPI"
+})]
     [BepInDependency("com.bepis.r2api")]
     [BepInPlugin("SadBoxMan.Monstar", "Monstar Mod", "1.3.6")]
+    
 
 
 
@@ -91,7 +95,7 @@ namespace MonstarMod
             Sprite RocketDrone_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_Drone_placeholder.png");
             Sprite MissileDrone_Icon = _MonstarIconBundle.LoadAsset<Sprite>("Assets/Import/icons/RoR2_Drone_Missile_Barrage.png");
 
- 
+
             //MULT Icon & Survivor Pod Setup
             GameObject ToolBotBodyfab = BodyCatalog.FindBodyPrefab("ToolbotBody");
             CharacterBody toolbox = ToolBotBodyfab.GetComponent<CharacterBody>();
@@ -400,10 +404,10 @@ namespace MonstarMod
             GameObject Impbodyfab = BodyCatalog.FindBodyPrefab("ImpBody");
 
             CharacterBody Imp_pod = Impbodyfab.GetComponent<CharacterBody>();
-            //Imp_pod.preferredPodPrefab = box;
+            Imp_pod.preferredPodPrefab = box;
             Imp_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/NULL");
             Imp_pod.baseJumpCount = 2;
-            //Imp_pod.bodyFlags = CharacterBody.BodyFlags.SprintAnyDirection;
+            Imp_pod.bodyFlags = CharacterBody.BodyFlags.SprintAnyDirection;
             Imp_pod.bodyFlags = CharacterBody.BodyFlags.IgnoreFallDamage;
 
 
@@ -436,6 +440,7 @@ namespace MonstarMod
 
             //Imp "Passive"
  
+               
 
             //Imp Utility 1
             SkillDef Imp_Float = ScriptableObject.CreateInstance<SkillDef>();
@@ -504,6 +509,40 @@ namespace MonstarMod
             Imp_uFam.variants[I3prevLength] = imp_U2variant;
 
 
+            //Imp Utility 3
+            SkillDef Imp_Bomb = ScriptableObject.CreateInstance<SkillDef>();
+            Imp_Bomb.activationState = new SerializableEntityStateType("EntityStates.NullifierMonster.FirePortalBomb");
+            Imp_Bomb.activationStateMachineName = "Weapon";
+            Imp_Bomb.icon = ImpCloak_Icon;
+            Imp_Bomb.skillName = "VOID_BOMB";
+            Imp_Bomb.skillNameToken = "null_skill";
+            Imp_Bomb.skillDescriptionToken = "Coat the area nearby with bombs of Void Energy. Deals <style=cIsDamage>100% damage</style>.";
+            Imp_Bomb.interruptPriority = InterruptPriority.PrioritySkill;
+            Imp_Bomb.baseRechargeInterval = 2.5f;
+            Imp_Bomb.baseMaxStock = 1;
+            Imp_Bomb.rechargeStock = 1;
+            Imp_Bomb.isBullets = false;
+            Imp_Bomb.shootDelay = 0.3f;
+            Imp_Bomb.beginSkillCooldownOnSkillEnd = false;
+            Imp_Bomb.requiredStock = 1;
+            Imp_Bomb.stockToConsume = 1;
+            Imp_Bomb.isCombatSkill = true;
+            Imp_Bomb.noSprint = false;
+            Imp_Bomb.canceledFromSprinting = false;
+            Imp_Bomb.mustKeyPress = false;
+            Imp_Bomb.fullRestockOnAssign = true;
+            Imp_Bomb.skillIndex = 163;
+
+
+            SkillFamily.Variant imp_U3variant = new SkillFamily.Variant();
+            imp_U3variant.skillDef = Imp_Bomb;
+            imp_U3variant.unlockableName = "IMP_U3";
+
+            int I4prevLength = Imp_uFam.variants.Length;
+            System.Array.Resize<SkillFamily.Variant>(ref Imp_uFam.variants, I4prevLength + 1);
+            Imp_uFam.variants[I4prevLength] = imp_U3variant;
+
+
 
             //Clay Templar Skills
             GameObject ClayBruiserbodyfab = BodyCatalog.FindBodyPrefab("ClayBruiserBody");
@@ -513,7 +552,7 @@ namespace MonstarMod
             FootstepHandler clay_trail = ClayBruiserbodyfab.GetComponent<FootstepHandler>();
 
 
-            //clayB_pod.preferredPodPrefab = box;
+            clayB_pod.preferredPodPrefab = box;
             clayB_pod.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/StandardCrosshair");
             clayB_pod.baseRegen = 0.6f;
             clayB_pod.levelRegen = 0.15f;
@@ -699,6 +738,7 @@ namespace MonstarMod
             birb_feather_data.variants[V_P2prevLength] = V_variant2;
 
 
+            
 
             //G.S.M. Drone Skills
             GameObject Drone1bodyfab = BodyCatalog.FindBodyPrefab("Drone1Body");
@@ -910,10 +950,43 @@ namespace MonstarMod
             System.Array.Resize<SkillFamily.Variant>(ref EngiWalkerTurret_pFam.variants, WT2prevLength + 1);
             EngiWalkerTurret_pFam.variants[WT2prevLength] = WT_variant2;
 
-            
+
+            //Walker Beam Variant 3
+            SkillDef walker_beam4 = ScriptableObject.CreateInstance<SkillDef>();
+            walker_beam4.activationState = new SerializableEntityStateType("EntityStates.GlobalSkills.LunarNeedle.FireLunarNeedle");
+            walker_beam4.activationStateMachineName = "Weapon";
+            walker_beam4.icon = GunnerTurret_Icon;
+            walker_beam4.skillName = "Walker_Beam_4";
+            walker_beam4.skillNameToken = "Occular Blast";
+            walker_beam4.skillDescriptionToken = "Fire homing energy crystals that stick to enemies and explode for <style=cIsDamage>12x150% damage</style>.";
+            walker_beam4.interruptPriority = InterruptPriority.Any;
+            walker_beam4.baseRechargeInterval = 1f;
+            walker_beam4.baseMaxStock = 24;
+            walker_beam4.rechargeStock = 6;
+            walker_beam4.isBullets = true;
+            walker_beam4.shootDelay = 0f;
+            walker_beam4.beginSkillCooldownOnSkillEnd = false;
+            walker_beam4.requiredStock = 1;
+            walker_beam4.stockToConsume = 1;
+            walker_beam4.isCombatSkill = true;
+            walker_beam4.noSprint = true;
+            walker_beam4.canceledFromSprinting = false;
+            walker_beam4.mustKeyPress = false;
+            walker_beam4.fullRestockOnAssign = true;
+            walker_beam4.skillIndex = 164;
+
+            SkillFamily.Variant WT_variant4 = new SkillFamily.Variant();
+            WT_variant4.skillDef = walker_beam4;
+            WT_variant4.unlockableName = "WT_B4";
+
+            int WT4prevLength = EngiWalkerTurret_pFam.variants.Length;
+            System.Array.Resize<SkillFamily.Variant>(ref EngiWalkerTurret_pFam.variants, WT4prevLength + 1);
+            EngiWalkerTurret_pFam.variants[WT4prevLength] = WT_variant4;
+
             //Test Skills
-            GameObject testPrefab = BodyCatalog.FindBodyPrefab("GravekeeperBody");
+            GameObject testPrefab = BodyCatalog.FindBodyPrefab("NullifierBody");
             CharacterBody testBody = testPrefab.GetComponent<CharacterBody>();
+            testBody.preferredPodPrefab = box;
             
 
             Transform Testis = testBody.aimOriginTransform;
@@ -975,8 +1048,9 @@ namespace MonstarMod
                 "< i > The Bleed from its 'Rend Flesh' stacks, so make sure that both claws hit your opponent for maximum damage output!" +
                 "\n\n< i > Has great mobility, meaning it can double jump and avoid fall damage!" +
                 "\n\n< i > 'Providence's Rapture' always brings you to the same fixed point on each map. Learn these points and plan accordingly!" +
-                "\n\n< i >In order to stun enemies a second time with Shadow Sneak, you must attack out of it." +
+                "\n\n< i > In order to stun enemies a second time with Shadow Sneak, you must attack out of it." +
                 "\n\n< i > Shadow Sneak also gives the Imp a burst of speed for increased sneak potential." +
+                "\n\n< i > If you hit an enemy with 3 null_skill Bombs, they will be bound in Void Energy, rendering them unable to move for roughly 3-4 seconds!" +
                 "</style>",
                 displayPrefab = imp_display,
                 primaryColor = new Color(0.6156862745f, 0.07450980392f, 0.07450980392f),
@@ -1030,13 +1104,14 @@ namespace MonstarMod
             };
 
             //Engineer Walker Turret
-            SurvivorDef Engi_Walker = new SurvivorDef
+            var Engi_Walker = new SurvivorDef
             {
                 bodyPrefab = Resources.Load<GameObject>("prefabs/characterbodies/EngiWalkerTurretBody"),
                 descriptionToken = "<i>No way in Hell am I going down there! I'll send in one of my new Walker Turrets instead!</i>" +
                 "\n~The Engineer when asked by Loader to do some scavenging on the surface of the planet." +
                 "\n\n<style=cSub>< i > Can easily walk up steep slopes\n\n< i > The TR58 Carbonizer Beam has a short-range, and isn't affected by attack-speed buffs." +
                 "\n\n< i >The Gatling Gun has a 2-Second reload between each batch of bullets." +
+                "\n\n< i >The Occular Blast is a more refined version of the in-game Lunar Item. Thanks, Engie!" +
                 "\n\n< i ><style=cIsHealth><u> WILL NOT WORK IN MULTIPLAYER!!!</u></style></style>",
                 displayPrefab = walker_display,
                 primaryColor = new Color(0.3019607843f, 0.7490196078f, 0.4392156863f),
@@ -1044,18 +1119,18 @@ namespace MonstarMod
 
             };
 
-            /*
+            
             //Test
             SurvivorDef test = new SurvivorDef
             {
-                bodyPrefab = Resources.Load<GameObject>("prefabs/characterbodies/GravekeeperBody"),
+                bodyPrefab = Resources.Load<GameObject>("prefabs/characterbodies/nullifierBody"),
                 descriptionToken = "Experiment 5A",
-                displayPrefab = test_display,
+                displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/nullifierBody"),
                 primaryColor = new Color(0.3019607843f, 0.7490196078f, 0.4392156863f),
                 unlockableName = "EngiWalker"
 
             };
-            */
+            
 
             R2API.SurvivorAPI.AddSurvivor(Engi_Walker);
             R2API.SurvivorAPI.AddSurvivor(Gun_Drone);
